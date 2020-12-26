@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function solution(n) {
+    let max = n[0];
+    for (let i = 0; i < n.length; i++) {
+        if (n[i] > max) {
+            max = n[i];
+        }
+    }
+    return n.indexOf(max);
+}
+    console.log(solution([17,18,33,58,92,7,33,42]));
+    </script>
+</body>
+</html>
