@@ -7,16 +7,16 @@
 </head>
 <body>
     <script>
-        function solution(n) {
-    let max = n[0];
-    for (let i = 0; i < n.length; i++) {
-        if (n[i] > max) {
-            max = n[i];
+     function solution(n) {
+        let answer;
+
+        for(let i = 0; i < n.length - 1; i++){
+            for(let j = i + 1; j < n.length; j++) {
+                console.log(`${n[i]} - ${n[j]}`);
+            }
         }
     }
-    return n.indexOf(max);
-}
-    console.log(solution([17,18,33,58,92,7,33,42]));
+    solution(['Tom', 'Jerry', 'Mike']);
     </script>
 </body>
 </html>
