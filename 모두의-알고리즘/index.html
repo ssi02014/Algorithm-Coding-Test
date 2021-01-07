@@ -7,14 +7,21 @@
 </head>
 <body>
     <script>
-        function solution(s_no, s_name, f_no) {
-            for(let i in s_no){
-                if(s_no[i] == f_no){
-                    return s_name[i];
-                }  
+        function solution(n) {
+            for(let i = 0; i < n.length; i++) {
+                let temp = 0;
+                for(let j = 0; j < n.length - 1; j++) {
+                    if(n[i] < n[j]) {
+                        temp = n[i];
+                        n[i] = n[j];
+                        n[j] = temp;
+                    }
+                }
             }
-        }
-        console.log(solution([39, 14, 67, 105], ["Justin", "John", "Mike", "Summer"], 105));
+        return n
+    }
+    console.log(solution([1, 9, 5, 6, 2, 4, 3, 8, 7]))
+
     </script>
 </body>
 </html>
