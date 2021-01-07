@@ -7,17 +7,14 @@
 </head>
 <body>
     <script>
-      function solution(a, b){
-        let i = Math.min(a, b);
-        while(true){
-            if(a % i == 0 && b % i ==0){
-                return i;
+        function solution(s_no, s_name, f_no) {
+            for(let i in s_no){
+                if(s_no[i] == f_no){
+                    return s_name[i];
+                }  
             }
-            i--;
         }
-    }
-
-        console.log(solution(1071,1029));
+        console.log(solution([39, 14, 67, 105], ["Justin", "John", "Mike", "Summer"], 105));
     </script>
 </body>
 </html>
