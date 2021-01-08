@@ -1,12 +1,3 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <script>
 function solution(row, column) {
     const RandomArrays = [];
     const minNumbers= [];
@@ -34,6 +25,3 @@ function solution(row, column) {
 }
 
 console.log(solution(5, 4));
-    </script>
-</body>
-</html>
