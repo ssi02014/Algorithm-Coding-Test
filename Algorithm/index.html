@@ -7,33 +7,25 @@
 </head>
 <body>
     <script>
-function solution(row, column) {
-    const RandomArrays = [];
-    const minNumbers= [];
-    
-    let answer = 0;
+        function solution(n, k) {
+            let resultCount = 0;
+            while(true){
+                if(n == 1) {
+                    break;
+                }
 
-    for (let i = 0; i < row; i++) {
-
-        let temp = [];
-        for (let j = 0; j < column; j++) {
-            temp.push(Math.floor(Math.random() * 9 + 1));
+                if(n % k !== 0) {
+                    n -= 1;
+                    resultCount++;
+                } else {
+                    n /= k;
+                    resultCount++;
+                }
+            }
+            return resultCount;
         }
-        RandomArrays.push(temp);
-    }
 
-    for (let i = 0; i < RandomArrays.length; i++) {
-        minNumbers.push(Math.min.apply(null, RandomArrays[i]));
-    }
-
-    /* 출력 확인용 */
-    console.log(RandomArrays);
-    console.log(minNumbers);
-
-    return answer = Math.max.apply(null, minNumbers);
-}
-
-console.log(solution(5, 4));
+    console.log(solution(25, 3));
     </script>
 </body>
 </html>
