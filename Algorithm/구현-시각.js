@@ -5,11 +5,11 @@ function solution(n) {
         for (let j = 0; j < 60; j++) {
             for (let k = 0; k < 60; k++) {
                 if ((i % 10 === 3) 
-                    || (Math.floor(j / 10) === 3) 
-                    || (j % 10 === 3) 
-                    || (Math.floor(k / 10) === 3) 
-                    || (k % 10) === 3) {
-                    count++
+                || (Math.floor(j / 10) === 3) 
+                || (j % 10 === 3) 
+                || (Math.floor(k / 10) === 3) 
+                || (k % 10) === 3) {
+                    count++;
                 }
             }
         }
