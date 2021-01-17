@@ -7,31 +7,59 @@
 </head>
 <body>
     <script>
-        function solution(n, m) {
-            const CHESS_LENGTH = 8;
-            const x = n.charCodeAt(0) - 'a'.charCodeAt(0) + 1;
-            const y = m.charCodeAt(0) - '0'.charCodeAt(0);
-            const steps = [
-                [-2 , -1 ], [-1 , -2], [1, -2], [2, -1 ],
-                [2, 1 ], [1, 2], [-1, 2], [-2, 1]
-            ];
 
-            let count = 0;
-            let nx, ny;
-            nx = ny = 0;
-            for (let i = 0; i < steps.length; i++) {
-                nx = x + steps[i][0];
-                ny = y + steps[i][1];
-                
-                if (nx >= 1 && ny >= 1 && nx <= CHESS_LENGTH && ny <= CHESS_LENGTH) {
+        function solution(n) {
+            const mapField = [
+                [1, 1, 1, 1],
+                [1, 0, 0, 1],
+                [1, 1, 0, 1],
+                [1, 1, 1, 1],
+            ];
+            const dx = [-1, 0, 1, 0];
+            const dy = [0, 1, 0, -1];
+
+            let x = n[0];
+            let y = n[1];
+            let direction = n[2];
+
+            let nx, ny, turnTime;
+            nx = ny = turnTime = 0;
+
+            let count = 1;
+            mapField[x][y] = 2; //현재 값 카운트
+            while (true) { 
+                direction--;
+                if (direction === -1) {
+                    direction = 3;
+                }
+                nx = x + dx[direction];
+                ny = y + dy[direction];
+    
+                if (mapField[nx][ny] === 0) {
+                    mapField[nx][ny] = 2;
+                    x = nx;
+                    y = ny;
                     count++;
+                    turnTime = 0;
+                    continue;
+                } else {
+                    turnTime++;
+                }
+
+                if (turnTime === 4) {
+                    nx = x - dx[direction];
+                    ny = y - dy[direction];
+                    if (mapField[nx][ny] === 0) {
+                        x = nx;
+                        y = ny;
+                    } else break;
+                    
+                    turnTime = 0;
                 }
             }
             return count;
-        }
-        console.log(solution('a', '1'));
-        console.log(solution('f', '6'));
-        console.log(solution('h', '8'));
+        };
+        console.log(solution([1, 1, 0]));
     </script>
 </body>
 </html>
