@@ -7,59 +7,60 @@
 </head>
 <body>
     <script>
+        const iceShape = [
+            [0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0],
+            [1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0],
+            [1, 1, 0, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 0],
+            [1, 1, 0, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0],
+            [1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+            [1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0],
+            [1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1],
+            [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1],
+            [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0],
+            [0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0],
+            [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1],
+            [1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1],
+            [1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1],
+        ];
 
-        function solution(n) {
-            const mapField = [
-                [1, 1, 1, 1],
-                [1, 0, 0, 1],
-                [1, 1, 0, 1],
-                [1, 1, 1, 1],
-            ];
-            const dx = [-1, 0, 1, 0];
-            const dy = [0, 1, 0, -1];
+        const iceShapeX = iceShape.length;
+        const iceShapeY = iceShape[0].length;
 
-            let x = n[0];
-            let y = n[1];
-            let direction = n[2];
+        function solution() {
+            return allFreezeIceCube();
+        }
 
-            let nx, ny, turnTime;
-            nx = ny = turnTime = 0;
-
-            let count = 1;
-            mapField[x][y] = 2; //현재 값 카운트
-            while (true) { 
-                direction--;
-                if (direction === -1) {
-                    direction = 3;
-                }
-                nx = x + dx[direction];
-                ny = y + dy[direction];
+        function freezeIceCube(x, y) {
+            if (x < 0 || y < 0 || x >= iceShapeX || y >= iceShapeY) {
+                return false;
+            } else if(iceShape[x][y] !== 0){
+                return false;
+            } else {
+                iceShape[x][y] = 2;
+                freezeIceCube(x - 1, y); 
+                freezeIceCube(x, y - 1);
+                freezeIceCube(x + 1, y);
+                freezeIceCube(x, y + 1);
     
-                if (mapField[nx][ny] === 0) {
-                    mapField[nx][ny] = 2;
-                    x = nx;
-                    y = ny;
-                    count++;
-                    turnTime = 0;
-                    continue;
-                } else {
-                    turnTime++;
-                }
-
-                if (turnTime === 4) {
-                    nx = x - dx[direction];
-                    ny = y - dy[direction];
-                    if (mapField[nx][ny] === 0) {
-                        x = nx;
-                        y = ny;
-                    } else break;
-                    
-                    turnTime = 0;
-                }
+                return true;
             }
-            return count;
-        };
-        console.log(solution([1, 1, 0]));
+        }
+
+        let count = 0;
+        function allFreezeIceCube() {
+            for(let i = 0; i < iceShapeX; i++) {
+               for(let j = 0; j < iceShapeY; j++) {
+                    if(freezeIceCube(i, j)) {
+                        count++;
+                    }
+               }
+           }
+           return count;
+        }
+
+        console.log(solution());
     </script>
 </body>
 </html>
