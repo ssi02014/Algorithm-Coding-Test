@@ -9,7 +9,7 @@ const graph = {
     8: [1, 7],
 };
 
-//BFS는 queue 2개 사용
+//BFS는 큐 2개 사용
 function bfs(graph, startNode) {
     let visitedQueue = [];   //탐색이 끝난 노드(queue)
     let needVisitQueue = []; //탐색해야 할 노드(queue)
@@ -26,3 +26,5 @@ function bfs(graph, startNode) {
     }
     return visitedQueue;
 }
+
+console.log(dfs(graph, 1));
