@@ -7,36 +7,25 @@
 </head>
 <body>
     <script>
-        const graph = {
-            1: [2, 3, 8],
-            2: [1, 7],
-            3: [1, 4, 5],
-            4: [3, 5],
-            5: [3, 4],
-            6: [7],
-            7: [2, 6, 8],
-            8: [1, 7],
-        };
 
-//DFS는 큐1개 스택1개 필요 큐: 선입선출, 스택: 후입선출
-function dfs(graph, startNode) {
-    let visitedQueue = []; // 탐색을 마친 노드들(queue)
-    let needVisitStack = []; // 탐색을 해야 할 노드들(stack)
+const graphs = [[], [2, 3, 8], [1, 7], [1, 4, 5], [3, 5], [3, 4], [7], [2, 6 ,8], [1, 7]];
 
-    needVisitStack.push(startNode);
+const bfs = (graph, startNode) => {
+    let visited = [];
+    let visitedQueue = [];
 
-    while (needVisitStack.length !== 0) {
-        const node = needVisitStack.pop(); 
-
-        if (!visitedQueue.includes(node)) {
-            visitedQueue.push(node);
-            needVisitStack = [...needVisitStack, ...graph[node].reverse()];
-        }
+    visitedQueue.push(startNode);
+    while (visitedQueue.length !== 0) {
+      const node = visitedQueue.shift();
+      if (!visited.includes(node)) {
+        visited.push(node); 
+        visitedQueue = [...visitedQueue, ...graph[node]];
+      }
     }
-    return visitedQueue;
-}
+    return visited;
+};
 
-console.log(dfs(graph, 1));
+console.log(bfs(graphs, 1));
     </script>
 </body>
 </html>

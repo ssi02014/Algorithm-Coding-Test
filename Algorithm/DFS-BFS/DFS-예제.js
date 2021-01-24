@@ -9,22 +9,21 @@ const graph = {
     8: [1, 7],
 };
 
-//DFS는 큐1개 스택1개 필요
+//DFS는 큐1개 스택1개 필요 or 재귀
 function dfs(graph, startNode) {
-    let visitedQueue = []; // 탐색을 마친 노드들(queue)
-    let needVisitStack = []; // 탐색을 해야 할 노드들(stack)
+    let visitedQueue, needVisitStack; 
+    visitedQueue = needVisitStack = [];
 
     needVisitStack.push(startNode);
 
     while (needVisitStack.length !== 0) {
-        const node = needVisitStack.pop(); 
+        const node = needVisitStack.pop(); //후입 선출
 
         if (!visitedQueue.includes(node)) {
             visitedQueue.push(node);
-            needVisitStack = [...needVisitStack, ...graph[node]];
+            needVisitStack = [...needVisitStack, ...graph[node].reverse()];
         }
     }
     return visitedQueue;
 }
-
 console.log(dfs(graph, 1));

@@ -11,13 +11,13 @@ const graph = {
 
 //BFS는 큐 2개 사용
 function bfs(graph, startNode) {
-    let visitedQueue = [];   //탐색이 끝난 노드(queue)
-    let needVisitQueue = []; //탐색해야 할 노드(queue)
+    let visitedQueue, needVisitQueue; 
+    visitedQueue = needVisitQueue = [];
 
     needVisitQueue.push(startNode);
 
     while (needVisitQueue.length !== 0) {
-        const node = needVisitQueue.shift(); //queue이기 때문에 선입 선출
+        const node = needVisitQueue.shift(); //선입 선출
         
         if (!visitedQueue.includes(node)) {
             visitedQueue.push(node);
@@ -27,4 +27,4 @@ function bfs(graph, startNode) {
     return visitedQueue;
 }
 
-console.log(dfs(graph, 1));
+console.log(bfs(graph, 1));
