@@ -1,5 +1,5 @@
 function solution() {
-    //Stack(후입선출: LIFO)
+    //Stack(후입선출: LIFO) 재귀함수는 스택구조라함
     const stack = [];
 
     stack.push(5);
