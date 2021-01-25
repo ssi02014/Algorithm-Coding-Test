@@ -15,7 +15,7 @@
 <br>
 
 ## ⭐ JavaScript를 이용한 풀이
-### 백준 - 두수비교.js
+### ex) 백준 - 두수비교.js
 ```javascript
     function solution (n, m) {
         if (n > m) {
@@ -26,6 +26,7 @@
             return '=';
         }
     }
-console.log(solution(1, 2));
+
+    console.log(solution(1, 2));
 ```
 <br>

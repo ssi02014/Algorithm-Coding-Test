@@ -8,19 +8,23 @@
 <body>
     <script>
 
-      function solution(n) {
-          // const minNum = Math.min(...n);
-          // const maxNum = Math.max(...n);
-          // const answer = `최솟값: ${minNum}, 최댓값: ${maxNum}`;
+      function solution(n, m, x) {
+          const numList = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+          let answer = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
-          const sort = n.sort((a, b) => a - b);
-          const minNum = sort[0];
-          const maxNum = sort[n.length - 1];
-          const answer = `최솟값: ${minNum}, 최댓값: ${maxNum}`;
+          const multipleNum = n * m * x;
+          const multipleList = multipleNum.toString().split('');
 
+          for (let i = 0; i < 10; i++) {
+              for(let j = 0; j < 10; j++) {
+                if(multipleList[i] === numList[j]) {
+                    answer[j] += 1;
+                }
+              }
+          }
           return answer;
       }
-      console.log(solution([20, 10, 35, 30, 7]));
+      console.log(solution(150, 266, 427));
       
     </script>
 </body>
