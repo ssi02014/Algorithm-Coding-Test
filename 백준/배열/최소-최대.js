@@ -11,3 +11,4 @@ function solution(n) {
     return answer;
 }
 console.log(solution([20, 10, 35, 30, 7]));
+console.log(solution([2, 10, 7, 15, 24]));
