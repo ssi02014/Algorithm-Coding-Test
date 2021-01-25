@@ -9,16 +9,18 @@
     <script>
 
       function solution(n) {
-        let answer = ``;
-        for(let i = 1; i < 10; i++) {
-            answer = `${n} * ${i} = ${n * i}`;
-            console.log(answer);
-        }
+          // const minNum = Math.min(...n);
+          // const maxNum = Math.max(...n);
+          // const answer = `최솟값: ${minNum}, 최댓값: ${maxNum}`;
+
+          const sort = n.sort((a, b) => a - b);
+          const minNum = sort[0];
+          const maxNum = sort[n.length - 1];
+          const answer = `최솟값: ${minNum}, 최댓값: ${maxNum}`;
+
+          return answer;
       }
-      solution(2);
-      solution(3);
-      solution(4);
-      // console.log(solution(0, 30));
+      console.log(solution([20, 10, 35, 30, 7]));
       
     </script>
 </body>
