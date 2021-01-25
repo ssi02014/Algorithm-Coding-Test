@@ -7,26 +7,18 @@
 </head>
 <body>
     <script>
-      function solution(n, m) {
-        let answerHour = n;
-        let answerMin = m - 45;
-        let answer = '';
 
-        if(answerMin < 0) {
-          answerHour--;
-          answerMin = 60 + answerMin;
-          
-          if(answerHour < 0) {
-            answerHour = 23;
-          }
+      function solution(n) {
+        let answer = ``;
+        for(let i = 1; i < 10; i++) {
+            answer = `${n} * ${i} = ${n * i}`;
+            console.log(answer);
         }
-
-        return answer = `${answerHour} ${answerMin}`
       }
-      console.log(solution(10, 10));
-      console.log(solution(0, 30));
-      console.log(solution(23, 40));
-      console.log(solution(1, 20));
+      solution(2);
+      solution(3);
+      solution(4);
+      // console.log(solution(0, 30));
       
     </script>
 </body>
