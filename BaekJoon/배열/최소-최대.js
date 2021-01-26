@@ -3,9 +3,9 @@ function solution(n) {
     // const maxNum = Math.max(...n);
     // const answer = `최솟값: ${minNum}, 최댓값: ${maxNum}`;
 
-    const sort = n.sort((a, b) => a - b);
-    const minNum = sort[0];
-    const maxNum = sort[n.length - 1];
+    const sortList = n.sort((a, b) => a - b);
+    const minNum = sortList[0];
+    const maxNum = sortList[n.length - 1];
     const answer = `최솟값: ${minNum}, 최댓값: ${maxNum}`;
 
     return answer;
