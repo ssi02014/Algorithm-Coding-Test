@@ -1,12 +1,10 @@
 function solution(n) {
     let answer = 0;
-    let binaryNumber = n.toString(2);
     let count = 0;
+    let binaryNumber = n.toString(2);
     
     for(let i = 0; i < binaryNumber.length; i++) {
-        if (binaryNumber[i] === '1') {
-            count++; 
-        }
+        if (binaryNumber[i] === '1') count++; 
     }
     
     while (true) {
@@ -14,11 +12,9 @@ function solution(n) {
         
         n += 1;
         binaryNumber = n.toString(2);
-
+        
         for (let i = 0; i < binaryNumber.length; i++) {
-            if (binaryNumber[i] === '1') {
-                answerCount++; 
-            } 
+            if (binaryNumber[i] === '1') answerCount++; 
         }
         
         if (answerCount === count) {

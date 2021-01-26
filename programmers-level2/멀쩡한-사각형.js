@@ -1,5 +1,5 @@
 function solution(w, h) {
-    return w * h - ((w + h) - greatestCommonDivisor(w,h));
+    return w * h - ((w + h) - greatestCommonDivisor(w, h));
 }
 
 function greatestCommonDivisor(minNum, maxNum) {
