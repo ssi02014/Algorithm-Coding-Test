@@ -8,24 +8,29 @@
 <body>
     <script>
 
-      function solution(n, m, x) {
-          const numList = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
-          const multipleNum = n * m * x;
-          const multipleList = multipleNum.toString().split('');
+        function solution(n) {
+            let temp = n;
+            let step = 0;
+            let count = 0;
 
+            while(true) {
+                count++;
 
-          let answer = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-          for (let i = 0; i < 10; i++) {
-              for (let j = 0; j < 10; j++) {
-                if (multipleList[i] === numList[j]) {
-                    answer[j] += 1;
+                if (temp < 10) {
+                    step = temp % 10;
+                } else {
+                    step = Math.floor(temp / 10) + (temp % 10);
                 }
-              }
-          }
-          return answer;
-      }
-      console.log(solution(150, 266, 427));
-      
+                
+                temp = (temp % 10).toString() + (step % 10).toString();
+                temp = +temp;
+
+                if (temp === n) {
+                    return count;
+                }
+            }
+        }
+        console.log(solution(26));
     </script>
 </body>
 </html>
