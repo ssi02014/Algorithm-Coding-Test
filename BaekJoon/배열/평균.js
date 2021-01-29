@@ -3,10 +3,14 @@ function solution(n) {
     const maxNum = Math.max(...n);
     let answer = 0;
     
-    for (let i = 0; i < n.length; i++) {
-        changePoint.push(n[i] / maxNum * 100);
-    }
+    // for (let i = 0; i < n.length; i++) {
+    //     changePoint.push(n[i] / maxNum * 100);
+    // }
     
+    n.forEach(el => {
+        changePoint.push(el / maxNum * 100);
+    })
+
     answer = changePoint.reduce((a, b) => a + b);
     return answer / n.length;
 }

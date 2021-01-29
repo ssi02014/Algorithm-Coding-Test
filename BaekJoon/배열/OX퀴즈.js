@@ -1,0 +1,24 @@
+function solution(n) {
+    let answer = 0;
+    let point = 0;
+
+//    for (let i = 0; i < n.length; i++) {
+//         if(n[i] === 'O') {
+//             point++;
+//         } else if (n[i] === 'X') {
+//             point = 0;
+//         }
+//    }
+
+    n.forEach(el => {
+        el === 'O' ? point++ : point = 0;
+        answer += point;
+    })
+    return answer;
+}
+
+console.log(solution(['O', 'O', 'X', 'X', 'O', 'X', 'X', 'O', 'O', 'O']));
+console.log(solution(['O', 'O', 'X', 'X', 'O', 'O', 'X', 'X', 'O', 'O']));
+console.log(solution(['O', 'X', 'O', 'X', 'O', 'X', 'O', 'X', 'O', 'X', 'O', 'X', 'O', 'X']));
+console.log(solution(['O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O']));
+console.log(solution(['O', 'O', 'O', 'O', 'X', 'O', 'O', 'O', 'O', 'X', 'O', 'O', 'O', 'O', 'X']));

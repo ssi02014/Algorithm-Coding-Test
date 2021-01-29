@@ -8,24 +8,36 @@
 <body>
     <script>
 
-const graphs = [[], [2, 3, 8], [1, 7], [1, 4, 5], [3, 5], [3, 4], [7], [2, 6 ,8], [1, 7]];
+        const graph = [
+           [1, 2],
+           [1, 3],
+           [1, 4],
+           [2, 4],
+           [3, 4]
+        ];
+        const graph_node = graph.length -1;
+        const visited = {};
+        const result = [];
 
-const bfs = (graph, startNode) => {
-    let visited = [];
-    let visitedQueue = [];
+        function solution() {
+            
+        }
 
-    visitedQueue.push(startNode);
-    while (visitedQueue.length !== 0) {
-      const node = visitedQueue.shift();
-      if (!visited.includes(node)) {
-        visited.push(node); 
-        visitedQueue = [...visitedQueue, ...graph[node]];
-      }
-    }
-    return visited;
-};
+        function dfs(graph, x, visited) {
 
-console.log(bfs(graphs, 1));
+            visited[x] = true;
+            result.push(x);
+            for (let y of graph[x]) {
+                if (!visited[y]) {
+                    dfs(graph, y, visited);
+                }
+            }
+        }
+
+        dfs(graph, 1, visited);
+        console.log(result.join(","));
+                
+        // console.log(dfs(graphs, 1));
     </script>
 </body>
 </html>
