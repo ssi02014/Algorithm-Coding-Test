@@ -10,57 +10,23 @@ let graph = [];
 let [dfsVisited, bfsVisited] = [[], []];
 let [dfsResult, bfsResult] = [[], []]; 
 
-rl.on("line", function (line) {
-    input.push(line); 
-}).on("close", function () { 
-        // input : ['4 5 1', '1 2', '1 3', '1 4', '2 4', '3 4']
-        let [node, trunkLine, startNode] = input[0].split(" ").map((el) => parseInt(el)); 
-        input = input.slice(1); 
-        // input : ['1 2', '1 3', '1 4', '2 4', '3 4']
+function dfs(startNode) { 
+    dfsVisited[startNode] = true; 
 
-        //인접 행렬(2차 배열) 생성
-        graph = Array.from(Array(node + 1), () => Array(node + 1).fill(0));
-        for (let i of input) { 
-            //i : 1 2 / 1 3 / 1 4 / 2 4 / 3 4 각각 x랑 y에 들어감
-            let [x, y] = i.split(" ").map(el => parseInt(el)); 
-            graph[x][y] = 1; 
-            graph[y][x] = 1; 
-        } 
-        console.log(graph);
-
-        dfsVisited = new Array(node + 1).fill(false); 
-        bfsVisited = new Array(node + 1).fill(false); 
-
-        //함수 실행
-        dfs(startNode); 
-        bfs(startNode); 
-
-        //출력 
-        console.log(dfsResult.join(" "));
-        console.log(bfsResult.join(" ")); 
-        
-        process.exit(); 
-    });
-
-
-function dfs(v) { 
-    dfsVisited[v] = true; 
-
-    dfsResult.push(v);
+    dfsResult.push(startNode);
     for (let i = 1; i < graph.length; i++) { 
-        //graph에 1이 있고 방문하지 않았다면 재귀 호출 
-        if (graph[v][i] === 1 && dfsVisited[i] === false) { 
+        if (graph[startNode][i] === 1 && dfsVisited[i] === false) { 
             dfs(i); 
         } 
     }
     return dfsResult;
 }
 
-function bfs(v) {
+function bfs(startNode) {
     const needVisitQueue = [];
-    needVisitQueue.push(v);
 
-    bfsResult.push(v);
+    needVisitQueue.push(startNode);
+    bfsResult.push(startNode);
 
     while(needVisitQueue.length !== 0) {
         const node = needVisitQueue.shift();
@@ -75,3 +41,39 @@ function bfs(v) {
     }
     return bfsResult;
 }
+
+function adjacencyMatrix(node, input) {
+    graph = Array.from(Array(node + 1), () => Array(node + 1).fill(0));
+
+    for (let i of input) { 
+        let [x, y] = i.split(" ").map(el => parseInt(el)); 
+        graph[x][y] = 1; 
+        graph[y][x] = 1; 
+    }
+}
+
+//입력 및 출력
+rl.on("line", function (line) {
+    input.push(line); 
+}).on("close", function () { 
+    // input : ['4 5 1', '1 2', '1 3', '1 4', '2 4', '3 4']
+    let [node, trunkLine, startNode] = input[0].split(" ").map((el) => parseInt(el)); 
+    input = input.slice(1); 
+
+    dfsVisited = new Array(node + 1).fill(false); 
+    bfsVisited = new Array(node + 1).fill(false); 
+
+    adjacencyMatrix(node, input);
+
+    dfs(startNode); 
+    bfs(startNode); 
+
+    //결과 출력 
+    console.log(dfsResult.join(" "));
+    console.log(bfsResult.join(" ")); 
+    
+    //종료
+    process.exit(); 
+});
+
+
