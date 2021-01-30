@@ -47,8 +47,7 @@ function adjacencyMatrix(node, input) {
 
     for (let i of input) { 
         let [x, y] = i.split(" ").map(el => parseInt(el)); 
-        graph[x][y] = 1; 
-        graph[y][x] = 1; 
+        [graph[x][y], graph[y][x]] = [1, 1];
     }
 }
 
