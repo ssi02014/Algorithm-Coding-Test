@@ -55,7 +55,7 @@ rl.on("line", function (line) {
     complex = Array.from(Array(complexSize), () => new Array(complexSize));
 
     for (let i = 0; i < complexSize; i++) { 
-        complex[i] = input[i].split("").map(el => Number(el)); 
+        complex[i] = input[i].split("").map(el => parseInt(el)); 
     }
 
     solution();

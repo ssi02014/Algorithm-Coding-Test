@@ -44,7 +44,7 @@ function rangeCheck(x, y) {
 }
 
 function createForm(input) {
-    [formHeight, formWidth, cabbages] = input[0].split(" ").map((el) => parseInt(el));
+    [formHeight, formWidth, cabbages] = input[0].split(" ").map(el => parseInt(el));
     form = Array.from(Array(formHeight), () => new Array(formWidth).fill(0));
 
     for(let j = 1; j <= cabbages; j++) {
