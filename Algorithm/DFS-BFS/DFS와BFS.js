@@ -4,7 +4,6 @@ const rl = readline.createInterface({
     output: process.stdout, 
 }); 
 
-//전역 변수
 let input = [];
 let graph = []; 
 let [dfsVisited, bfsVisited] = [[], []];
@@ -51,7 +50,7 @@ function adjacencyMatrix(node, input) {
     }
 }
 
-//입력 및 출력
+//입력 및 결과 출력
 rl.on("line", function (line) {
     input.push(line); 
 }).on("close", function () { 
@@ -67,11 +66,9 @@ rl.on("line", function (line) {
     dfs(startNode); 
     bfs(startNode); 
 
-    //결과 출력 
     console.log(dfsResult.join(" "));
     console.log(bfsResult.join(" ")); 
     
-    //종료
     process.exit(); 
 });
 

@@ -8,36 +8,24 @@
 <body>
     <script>
 
-        const graph = [
-           [1, 2],
-           [1, 3],
-           [1, 4],
-           [2, 4],
-           [3, 4]
-        ];
-        const graph_node = graph.length -1;
-        const visited = {};
-        const result = [];
+        //메모리 초과
+      let nextRipeTomatoCount = ripeTomato.length;
+        day += 1;
 
-        function solution() {
-            
-        }
+        for (let i = 0; i < nextRipeTomatoCount; i++) {
+            [x, y] = ripeTomato[0];
 
-        function dfs(graph, x, visited) {
+            for (let j = 0; j < dx.length; j++) {
+                nx = x + dx[j];
+                ny = y + dy[j];
 
-            visited[x] = true;
-            result.push(x);
-            for (let y of graph[x]) {
-                if (!visited[y]) {
-                    dfs(graph, y, visited);
+                if(rangeCheck(nx, ny) && farm[nx][ny] === 0) {
+                    farm[nx][ny] = 1;
+                    ripeTomato.push([nx, ny]);
                 }
             }
+            ripeTomato = ripeTomato.slice(1);
         }
-
-        dfs(graph, 1, visited);
-        console.log(result.join(","));
-                
-        // console.log(dfs(graphs, 1));
     </script>
 </body>
 </html>

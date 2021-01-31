@@ -6,9 +6,9 @@ const rl = readline.createInterface({
 
 const [dx, dy] = [[1, -1, 0, 0], [0, 0, 1, -1]];
 let input = [];
-let map = [];
-let mapHeight, mapWidth;
-mapHeight = mapWidth = 0;
+let maze = [];
+let mazeHeight, mazeWidth;
+mazeHeight = mazeWidth = 0;
 
 function bfs(x, y) {
     let needVisitQueue = [];
@@ -22,31 +22,33 @@ function bfs(x, y) {
         const node = needVisitQueue.shift();
         [x, y] = node;
 
-        for(let i = 0; i < dx.length; i++) {
+        for (let i = 0; i < dx.length; i++) {
             nx = x + dx[i];
             ny = y + dy[i];
 
-            if(nx < 0 || ny < 0 || nx >= mapHeight || ny >= mapWidth) continue;
-            if(map[nx][ny] === 0) continue;
-            if(map[nx][ny] === 1) {
-                map[nx][ny] = map[x][y] + 1;
+            if (nx < 0 || ny < 0 || nx >= mazeHeight || ny >= mazeWidth) continue;
+            if (maze[nx][ny] === 0) continue;
+            if (maze[nx][ny] === 1) {
+                maze[nx][ny] = maze[x][y] + 1;
                 needVisitQueue.push([nx, ny]);
             }
         }
     }
-    return map[mapHeight - 1][mapWidth - 1];
+    return maze[mazeHeight - 1][mazeWidth - 1];
 }
 
+//입력 및 결과 출력
 rl.on("line", function (line) {
     input.push(line); 
 }).on("close", function () { 
-    [mapHeight, mapWidth] = input[0].split(" ").map(el => parseInt(el));
+    [mazeHeight, mazeWidth] = input[0].split(" ").map(el => parseInt(el));
     input = input.slice(1);
 
-    map = Array.from(Array(mapHeight), () => new Array(mapWidth));
-    for(let i = 0; i < mapHeight; i++) {
-        map[i] = input[i].split("").map(el => parseInt(el));
+    maze = Array.from(Array(mazeHeight), () => new Array(mazeWidth));
+    for(let i = 0; i < mazeHeight; i++) {
+        maze[i] = input[i].split("").map(el => parseInt(el));
     };
 
+    //결과 출력
     console.log(bfs(0, 0));
 });

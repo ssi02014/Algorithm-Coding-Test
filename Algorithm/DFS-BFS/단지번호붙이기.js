@@ -47,7 +47,7 @@ function rangeCheck(x, y) {
     return false;
 }
 
-//입력과 출력
+//입력 및 결과 출력
 rl.on("line", function (line) {
     input.push(line); 
 }).on("close", function () { 
@@ -59,6 +59,6 @@ rl.on("line", function (line) {
     }
 
     solution();
-    //종료
+
     process.exit();
 });
