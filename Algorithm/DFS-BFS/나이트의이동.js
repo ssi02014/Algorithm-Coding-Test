@@ -11,19 +11,41 @@ let testCase = 0;
 let chessBoardSide = 0;
 
 function bfs(startX, startY, targetX, targetY) {
-    let queue = [];
-    
+    const queue = [];
+
+    let count = 0;
+    let nx, ny;
+    nx = ny = 0;
+
     chessBoard[startX][startY] = 1;
     chessBoard[targetX][targetY] = 2;
 
-    let queue = [startX, startY];
-    let count = 0;
+    queue.push([startX, startY]);
+
+    while (queue.length !== 0) {
+        const QUEUE_LENGTH = queue.length;
+        count++;
+
+        for (let i = 0; i < QUEUE_LENGTH; i++) {
+            const [x, y] = queue.shift();
+
+            if (startX === targetX && startY === targetY) return count = 0;
+
+            for (let j = 0; j < dx.length; j++) {
+                [nx, ny] = [x + dx[j], y + dy[j]];
+
+                if(rangeCheck(nx, ny) && chessBoard[nx][ny] === 2) return count;
+                if(rangeCheck(nx, ny) && chessBoard[nx][ny] === 0) {
+                    chessBoard[nx][ny] = 1;
+                    queue.push([nx, ny]);
+                }
+            }
+        }
+    } 
 }
 
 function rangeCheck(x, y) {
-    if (x >= 0 && x < chessBoardSide && y >= 0 && y < chessBoardSide) {
-        return true;
-    }
+    if (x >= 0 && x < chessBoardSide && y >= 0 && y < chessBoardSide) return true;
     return false;
 }
 
@@ -32,12 +54,13 @@ rl.on("line", function (line) {
 }).on("close", function () { 
     testCase = parseInt(input.shift());
     for (let i = 0; i < testCase; i++) {
+
         chessBoardSide = parseInt(input.shift());
         chessBoard = Array.from(Array(chessBoardSide), () => Array(chessBoardSide).fill(0));
 
-        let [startX, startY] = input.shift().split(" ").map(el => parseInt(el));
-        let [targetX, targetY] = input.shift().split(" ").map(el => parseInt(el));
+        const [startX, startY] = input.shift().split(" ").map(el => parseInt(el));
+        const [targetX, targetY] = input.shift().split(" ").map(el => parseInt(el));
 
-        bfs(startX, startY, targetX, targetY);
+        console.log(bfs(startX, startY, targetX, targetY));
     }
 });
