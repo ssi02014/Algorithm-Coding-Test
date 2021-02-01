@@ -8,14 +8,13 @@ const rl = readline.createInterface({
 let input = [];
 let graph = []; 
 let dfsVisited = [];
+let result = 0;
 
 function dfs(computers, startNode) { 
     dfsVisited[startNode] = true; 
 
     for (let i = 1; i < computers; i++) { 
-        if (graph[startNode][i] === 1 && !dfsVisited[i]) { 
-            dfs(computers, i); 
-        } 
+        if (graph[startNode][i] === 1 && !dfsVisited[i]) dfs(computers, i);
     }
 }
 
@@ -33,7 +32,6 @@ rl.on("line", function (line) {
     input.push(line); 
 }).on("close", function () { 
     let [computers, networkLine] = input.map(el => parseInt(el));
-    let count = 0;
     input = input.slice(2);
 
     dfsVisited = new Array(computers + 1).fill(false); 
@@ -45,10 +43,9 @@ rl.on("line", function (line) {
     //모든 dfs 재귀 함수 호출 이후
     for (let i = 2; i <= computers; i++) {
         if (dfsVisited[i] === true) {
-            count += 1;
+            result += 1;
         }
     }
-    console.log(graph);
-    console.log(count);
+    console.log(result);
 });
 
