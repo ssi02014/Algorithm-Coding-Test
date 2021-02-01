@@ -13,4 +13,5 @@ function solution(n, m, x) {
     }
     return answer;
 }
+
 console.log(solution(150, 266, 427));
