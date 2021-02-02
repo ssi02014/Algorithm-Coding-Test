@@ -1,11 +1,12 @@
+const NUMBER_RANGE = 10000;
 const selfNumberList = [];
 
 function solution() {
-    for(let i = 1; i <= 10000; i++) {
+    for(let i = 1; i <= NUMBER_RANGE; i++) {
         extractSelfNumber(i);
     }   
 
-    for(let i = 1; i <= 10000; i++) {
+    for(let i = 1; i <= NUMBER_RANGE; i++) {
         if(!selfNumberList.includes(i)) console.log(i);
     }
 }

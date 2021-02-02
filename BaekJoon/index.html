@@ -8,35 +8,23 @@
 <body>
     <script>
 
-function solution() {
-    let selfNumber = 0;
-    let selfNumberList = [];
-    let allNumberList = [];
-    for(let i = 1; i <= 10000; i++) {
-        d(i);
-    }
+function solution(n, m, x) {
+    const COMPARE_LENGTH = 10;
+    const comparisonList = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
     
-    function d(n) {
-        if(n < 10) {
-            selfNumber = 2 * n;
-        } else if(n < 100) {
-            selfNumber = n + parseInt(n / 10) + (n % 10);
-        } else if (n < 1000) {
-            selfNumber = n + parseInt(n / 100) + parseInt((n % 100) / 10) + (n % 10);
-        } else {
-            selfNumber = n + parseInt(n / 1000) + parseInt((n % 1000) / 100) + parseInt((n % 100) / 10) +(n % 10);
-        }
-        selfNumberList.push(selfNumber);
-    }
-    
+    const multipleNum = n * m * x;
+    const multipleList = multipleNum.toString().split('');
 
-    for(let i = 1; i <= 10000; i++) {
-        if(!selfNumberList.includes(i)) {
-            console.log(i);
+    const answer = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+    for (let i = 0; i < COMPARE_LENGTH; i++) {
+        for (let j = 0; j < COMPARE_LENGTH; j++) {
+           if (multipleList[i] === comparisonList[j]) answer[j] += 1;
         }
     }
+    return answer;
 }
-    solution();
+
+console.log(solution(150, 266, 427));
     </script>
 </body>
 </html>
