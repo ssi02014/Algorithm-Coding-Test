@@ -4,7 +4,8 @@ const rl = readline.createInterface({
     output: process.stdout, 
 }); 
 
-let input = [];
+//전역 변수
+const input = [];
 
 function solution(n) {
     const arithmeticSequence = [];
@@ -12,9 +13,8 @@ function solution(n) {
     let [one, ten, hundred] = [0, 0, 0];
 
     for (let i = 1; i <= n; i++) {
-        if (i < 100) {
-            arithmeticSequence.push(n);
-        } else {
+        if (i < 100) arithmeticSequence.push(i);
+        else {
             hundred = parseInt(i / 100);
             ten = parseInt((i % 100) / 10);
             one = i % 10;
