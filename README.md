@@ -4,8 +4,8 @@
 <br>
 
 ## 💥 코딩테스트 문제 사이트
-- [programmers] (https://programmers.co.kr/)
-- [백준] (https://www.acmicpc.net/)
+- [programmers] : (https://programmers.co.kr/)
+- [백준] : (https://www.acmicpc.net/)
 
 <br>
 

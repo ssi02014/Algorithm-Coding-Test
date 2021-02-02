@@ -4,6 +4,7 @@ const rl = readline.createInterface({
     output: process.stdout, 
 }); 
 
+//전역 변수
 let input = [];
 
 function solution(n, m) {
