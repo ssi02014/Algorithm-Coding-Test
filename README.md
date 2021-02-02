@@ -15,18 +15,29 @@
 <br>
 
 ## ⭐ JavaScript를 이용한 풀이
-### ex) 백준 - 두수비교.js
+### 백준 입력값 받기
 ```javascript
-    function solution (n, m) {
-        if (n > m) {
-            return '>';
-        } else if ( n < m) {
-            return '<';
-        } else {
-            return '=';
-        }
+    
+    const readline = require("readline"); 
+    const rl = readline.createInterface({ 
+        input: process.stdin, 
+        output: process.stdout, 
+    }); 
+
+    //전역 변수
+    let input = [];
+
+    function solution() {
+        //풀이 코드...
     }
 
-    console.log(solution(1, 2));
+    rl.on("line", function (line) {
+        input.push(line); 
+    }).on("close", function () { 
+        
+        //입력값 받는 코드...
+
+        solution();
+    })
 ```
 <br>
