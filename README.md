@@ -1,5 +1,9 @@
-# Algorithm-Coding-Test
-## 💥 프로그래머스 코딩테스트 연습
+# 💻 Algorithm-Coding-Test
+### 알고리즘/자료구조 및 코딩테스트 공부 저장소
+
+<br>
+
+## 💥 코딩테스트 문제 사이트
 - [programmers] (https://programmers.co.kr/)
 - [백준] (https://www.acmicpc.net/)
 
@@ -14,8 +18,7 @@
 
 <br>
 
-## ⭐ JavaScript를 이용한 풀이
-### 백준 입력값 받기
+## 🏃 백준에서 node.js 입력값 받기
 ```javascript
     
     const readline = require("readline"); 
