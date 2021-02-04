@@ -2,7 +2,7 @@ function solution() {
     const list = [7, 5, 9, 0, 3, 1, 6, 2, 9, 1, 4, 8, 0, 5 ,2]
     const maxNum = Math.max(...list);
     const count = {};
-    
+
     let countLength = 0;
     let result = [];
 
@@ -15,6 +15,7 @@ function solution() {
     }
 
     countLength = Object.keys(count).length;
+    
     for (let i = 0; i < countLength; i++) {
         for(let j = 0; j < count[i]; j++) {
             result.push(i);
