@@ -18,7 +18,7 @@
 
 <br>
 
-## 🏃 백준에서 node.js 입력값 받기
+## 🏃 백준) node.js 입력값 받기
 ```javascript
     
     const readline = require("readline"); 
@@ -44,3 +44,16 @@
     })
 ```
 <br>
+
+## 🏃 프로그래머스) 함수형 코딩테스트
+### ex) Level1 - 3진법 뒤집기
+```javascript
+    function solution(n) {
+        const reverseTernary = n.toString(3).split('').reverse();
+        let answer = 0;
+        
+        let sum ='';
+        reverseTernary.forEach(n => sum += n);
+        return answer = parseInt(sum, 3);
+    }
+```
