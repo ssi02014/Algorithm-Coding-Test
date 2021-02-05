@@ -9,10 +9,10 @@ let input = [];
 rl.on("line", function (line) {
     input.push(line); 
 }).on("close", function () { 
-    let count = parseInt(input.shift());
-    let result = [];
+    const count = parseInt(input.shift());
+    const result = [];
 
-    for(let i = 0; i < count; i++) {
+    for (let i = 0; i < count; i++) {
         result.push(parseInt(input[i]));
     }
     console.log(result.sort((a, b) => b - a));
