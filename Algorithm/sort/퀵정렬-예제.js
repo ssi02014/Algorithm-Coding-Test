@@ -1,7 +1,6 @@
 let list = [7, 5, 9, 0, 3, 1, 6, 2, 4, 8];
 
 function solution(list, start, end) {
-    let list = [7, 5, 9, 0, 3, 1, 6, 2, 4, 8];
     let [pivot, left, right] = [start, start + 1, end];
 
     if (start >= end) return;
@@ -16,6 +15,7 @@ function solution(list, start, end) {
         if (left >= right) [list[right], list[pivot]] = [list[pivot], list[right]];
         else [list[left], list[right]] = [list[right], list[left]];
     }
+
     solution(list, start, right - 1);
     solution(list, right + 1, end);
 }
