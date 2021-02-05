@@ -1,5 +1,6 @@
 # 💻 Algorithm-Coding-Test
-### 알고리즘/자료구조 및 코딩테스트 공부 저장소
+### 알고리즘/자료구조 및 코딩테스트 공부 저장소.
+### 매일 1~2문제 꼭 풀고 commit 하기! 😤
 
 <br>
 
@@ -15,12 +16,13 @@
     - Greedy
     - Implement
     - DFS, BFS
+    - Recursion
+    - Sort
 
 <br>
 
 ## 🏃 백준) node.js 입력값 받기
 ```javascript
-    
     const readline = require("readline"); 
     const rl = readline.createInterface({ 
         input: process.stdin, 
@@ -43,6 +45,7 @@
         solution();
     })
 ```
+
 <br>
 
 ## 🏃 프로그래머스) 함수형 코딩테스트
@@ -57,3 +60,5 @@
         return answer = parseInt(sum, 3);
     }
 ```
+
+<br>
