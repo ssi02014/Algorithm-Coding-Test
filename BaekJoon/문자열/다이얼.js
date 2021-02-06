@@ -4,7 +4,7 @@ const rl = readline.createInterface({
     output: process.stdout, 
 }); 
 
-let input = [];
+const input = [];
 
 rl.on("line", function (line) {
     input.push(line); 
@@ -14,11 +14,11 @@ rl.on("line", function (line) {
     const asciiA = 'A'.charCodeAt();
 
     let result = 0;
-    let asciiWord = 0;
+    let asciiAlphabet = 0;
 
     alphabetList.map(alphabet => {
-        asciiWord = alphabet.charCodeAt(0);
-        result += dial[asciiWord - asciiA];
+        asciiAlphabet = alphabet.charCodeAt(0);
+        result += dial[asciiAlphabet - asciiA];
     });
 
     console.log(result);
