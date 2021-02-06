@@ -9,6 +9,7 @@ const input = [];
 rl.on("line", function (line) {
     input.push(line); 
 }).on("close", function () { 
+    //교재에 나온 풀이 말고 다른 방법으로 풀어봄 :)
     const [n, k] = input.shift().split(" ").map(el => parseInt(el));
     const listOne = input[0].split(" ").map(el => parseInt(el));
     const listTwo = input[1].split(" ").map(el => parseInt(el));
