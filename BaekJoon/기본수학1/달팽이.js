@@ -24,7 +24,7 @@ rl.on("line", function (line) {
         }
     */
 
-    count = ((v - b - 1) / (a - b)) + 1;
+    count = Math.ceil((v - b) / (a - b));
 
-    console.log(parseInt(count));
+    console.log(count);
 });
