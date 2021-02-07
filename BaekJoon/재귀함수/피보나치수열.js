@@ -10,12 +10,12 @@ const input = [];
 rl.on("line", function (line) {
     input.push(line); 
 }).on("close", function () { 
-    let N = parseInt(input.shift());
+    const N = parseInt(input.shift());
 
-    function fibonaci(a) {
+    function fibonaci(n) {
         let answer = 0;
-        if (a <= 1) return a;
-        return answer = fibonaci(a-1) + fibonaci(a-2);
+        if (n <= 1) return n;
+        return answer = fibonaci(n - 1) + fibonaci(n - 2);
     }
 
     console.log(fibonaci(N));
