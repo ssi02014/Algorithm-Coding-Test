@@ -11,17 +11,17 @@ rl.on("line", function (line) {
 }).on("close", function () { 
     let [N, K] = input.shift().split(" ").map(Number);
     let coinList = input.splice(0).map(Number);
-    let useCoins = [];
+
+    let availableCoin = [];
     let count = 0;
 
     for (let i = 0; i < N; i++) {
-        if(coinList[i] < K) {
-            useCoins.push(coinList[i]);
-        }
+        if (coinList[i] < K) availableCoin.push(coinList[i]);
     }
-    useCoins = useCoins.sort((a, b) => b - a);
     
-    for(let coin of useCoins) {
+    availableCoin = availableCoin.sort((a, b) => b - a);
+    
+    for(let coin of availableCoin) {
         count += parseInt(K / coin);
         K = K % coin;
     }

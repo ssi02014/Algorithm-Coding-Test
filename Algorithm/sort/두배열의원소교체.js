@@ -16,11 +16,12 @@ rl.on("line", function (line) {
 
     let [minOne, maxTwo, minIndex, maxIndex] = [0, 0, 0, 0];
 
-    for(let i = 0; i < k; i++) {
+    for (let i = 0; i < k; i++) {
         [minOne, maxTwo] = [Math.min(...listOne), Math.max(...listTwo)];
-        [minIndex, maxIndex] = [listOne.indexOf(minOne), listTwo.indexOf(maxTwo)];
-        
-        [listOne[minIndex], listTwo[maxIndex]] = [listTwo[maxIndex], listOne[minIndex]];
+        if (minOne < maxTwo) {
+            [minIndex, maxIndex] = [listOne.indexOf(minOne), listTwo.indexOf(maxTwo)];
+            [listOne[minIndex], listTwo[maxIndex]] = [listTwo[maxIndex], listOne[minIndex]];
+        } else break;
     }
     console.log(listOne.reduce((a, b) => a + b));
 });
