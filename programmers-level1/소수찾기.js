@@ -1,4 +1,4 @@
-function solution(n) {
+function solution(n) { //n은 10
     let answer = 0;
     let arr = [];
     
@@ -11,10 +11,10 @@ function solution(n) {
         console.log(i) //i = 2, 3 , 4, 5, ...
     
         if (arr[i] !== 0) {
-            for (let j = i + i; j <= n; j += i) {           //소수의 배수들은 소수가 아님 //j는 4,6,8,10,6,9, ... //소수가 아닌것을 0으로 표현
+            for (let j = 2 * i; j <= n; j += i) {           //소수의 배수들은 소수가 아님 //j는 4,6,8,10,6,9, ... //소수가 아닌것을 0으로 표현
                 arr[j] = 0;                                  
             }
-        }
+        }``
     }
     for(let i = 0; i <= n; i++){
         if(arr[i] !== 0) answer++;
