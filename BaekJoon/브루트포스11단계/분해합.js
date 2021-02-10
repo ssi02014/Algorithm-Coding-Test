@@ -1,4 +1,3 @@
-const { parse } = require("path");
 const readline = require("readline"); 
 const rl = readline.createInterface({ 
     input: process.stdin, 
@@ -27,5 +26,6 @@ rl.on("line", function (line) {
 
         if (disassemblySum === inputNum) constructor.push(i);
     }
-    console.log(constructor.sort((a, b) => a - b)[0]);
+    if(constructor.length < 1) console.log(0);
+    else console.log(constructor.sort((a, b) => a - b)[0]);
 });
