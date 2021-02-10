@@ -18,7 +18,6 @@ function bfs(graph, startNode) {
 
     while (needVisitQueue.length !== 0) {
         const node = needVisitQueue.shift(); //선입 선출
-        
         if (!visitedQueue.includes(node)) {
             visitedQueue.push(node);
             needVisitQueue = [...needVisitQueue, ...graph[node]];
@@ -27,4 +26,4 @@ function bfs(graph, startNode) {
     return visitedQueue;
 }
 
-console.log(bfs(graph, 1));
+console.log(bfs(graph, 1).join(" "));
