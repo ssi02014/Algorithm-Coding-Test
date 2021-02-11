@@ -18,7 +18,7 @@ rl.on("line", function (line) {
     let mode = 0;
     
 
-    for(let i = 0; i < N; i++) {
+    for (let i = 0; i < N; i++) {
         list.push(parseInt(input[i]));
     }
 
@@ -28,13 +28,13 @@ rl.on("line", function (line) {
         compareObj[list[i]] = 0;
     }
 
-    for(let i = 0; i < N; i++) {
+    for (let i = 0; i < N; i++) {
         compareObj[list[i]]++;
     }
 
     maxNum = Math.max(...Object.values(compareObj));
 
-    for(let el in compareObj) {
+    for (let el in compareObj) {
         if (compareObj[el] === maxNum) modeList.push(parseInt(el));
     }
     
