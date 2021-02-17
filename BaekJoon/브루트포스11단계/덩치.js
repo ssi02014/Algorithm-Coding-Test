@@ -27,5 +27,5 @@ rl.on("line", function (line) {
         }
         rankList.push(rank);
     }
-    console.log(compare.join(" "));
+    console.log(rankList.join(" "));
 });
