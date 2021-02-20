@@ -30,7 +30,6 @@ rl.on("line", function (line) {
     input.push(line); 
 }).on("close", function () {
     const [riceCakeCount, reqRiceCakeLength] = input.shift().split(" ").map(Number);
-
     const riceCakes = input.shift().split(" ").map(Number);
     const maxRiceCakeLength = Math.max(...riceCakes);
 

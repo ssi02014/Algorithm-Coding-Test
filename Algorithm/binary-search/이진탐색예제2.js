@@ -16,7 +16,7 @@ function binarySearch(array, target, start, end) {
         else if (array[mid] > target) end = mid - 1;
         else start = mid + 1;
     }
-    return -1;
+    return -1; //원소 존재x
 }
 
 rl.on("line", function (line) {

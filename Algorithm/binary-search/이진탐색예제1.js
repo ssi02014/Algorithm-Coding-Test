@@ -22,6 +22,5 @@ rl.on("line", function (line) {
     const [n, target] = input.shift().split(" ").map(Number);
     const inputArray = input.shift().split(" ").map(Number).sort((a, b) => a - b);
 
-    console.log(inputArray);
     console.log(binarySearch(inputArray, target, 0, n - 1));
 });
