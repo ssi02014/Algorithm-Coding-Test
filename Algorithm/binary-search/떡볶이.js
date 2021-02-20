@@ -6,18 +6,18 @@ const rl = readline.createInterface({
 
 const input = [];
 
-function binarySearch(riceCakes, reqRiceCakeLength, start, end) {
+function binarySearch(array, target, start, end) {
     let [total, mid, result] = [0, 0, 0];
 
     while (start <= end) {
         total = 0;
         mid = Math.ceil((start + end) / 2);
 
-        for (let riceCake of riceCakes) {
-            if (riceCake > mid) total += riceCake - mid 
+        for (let el of array) {
+            if (el > mid) total += el - mid 
         }
 
-        if (total < reqRiceCakeLength) end = mid - 1;
+        if (total < target) end = mid - 1;
         else {
             result = mid;
             start = mid + 1;

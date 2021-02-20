@@ -28,8 +28,8 @@ rl.on("line", function (line) {
     const reqParts = input[3].split(" ").map(Number); 
 
     let result = [];
-    for (let part of reqParts) {
-        result.push(binarySearch(totalParts, part, 0, totalPartCount - 1));
+    for (let reqPart of reqParts) {
+        result.push(binarySearch(totalParts, reqPart, 0, totalPartCount - 1));
     }
     console.log(result.join(" "));
 });
