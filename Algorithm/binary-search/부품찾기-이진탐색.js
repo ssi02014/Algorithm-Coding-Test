@@ -9,7 +9,7 @@ const input = [];
 function binarySearch(array, target, start, end) {
     let mid = 0;
     
-    while(start <= end) {
+    while (start <= end) {
         mid = Math.ceil((start + end) / 2);
         
         if (array[mid] === target) return 'yes';

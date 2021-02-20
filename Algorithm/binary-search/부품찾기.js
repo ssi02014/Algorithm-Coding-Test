@@ -15,7 +15,7 @@ rl.on("line", function (line) {
     const reqParts = input[3].split(" ").map(Number); 
 
     let result = [];
-    for(let part of reqParts) {
+    for (let part of reqParts) {
         totalParts.includes(part) ? result.push('yes') : result.push('no');
     }
     

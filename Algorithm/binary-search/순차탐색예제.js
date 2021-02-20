@@ -16,9 +16,7 @@ rl.on("line", function (line) {
     if (!inputArray.includes(target)) return console.log(-1);
 
     for (let el in inputArray) {
-        if (inputArray[el] === target) {
-            return console.log(parseInt(el) + 1);
-        }
+        if (inputArray[el] === target) return console.log(parseInt(el) + 1);
     }
 
 });
