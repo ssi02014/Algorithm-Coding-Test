@@ -18,7 +18,7 @@ rl.on("line", function (line) {
     }
 
     location.sort((a, b) => {
-        return a[0] !== b[0] ? a[0] - b[0] : a[1] - b[1];
+        return a[1] !== b[1] ? a[1] - b[1] : a[0] - b[0];
     }).forEach(a => {
         result += `${a[0]} ${a[1]}\n`;
     });
