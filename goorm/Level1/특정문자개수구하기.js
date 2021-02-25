@@ -16,7 +16,7 @@ rl.on("line", function (line) {
 	for (let i = 0; i < str.length; i++) {
 		str[i] = str[i].split("");
 		for (let j = 0; j < str[i].length; j++) {
-			if(str[i][j] === N) count++;
+			if (str[i][j] === N) count++;
 		}
 	}
 	
