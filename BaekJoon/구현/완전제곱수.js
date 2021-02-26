@@ -12,10 +12,10 @@ rl.on("line", function (line) {
     const N = parseInt(input[0]);
     const M = parseInt(input[1]);
     const result = [];
-    
+
     let perfectSquareNum = 0;
     
-    for(let i = 1; i * i <= M; i++) {
+    for (let i = 1; i * i <= M; i++) {
         perfectSquareNum = i * i;
         if (perfectSquareNum >= N && perfectSquareNum <= M) {
             result.push(perfectSquareNum);
