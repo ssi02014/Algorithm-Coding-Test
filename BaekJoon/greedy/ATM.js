@@ -12,14 +12,15 @@ rl.on("line", function (line) {
   const N = parseInt(input[0]);
   const waiting = input[1].split(" ").map(Number);
   const result = [];
-  
+
   let sum = 0;
 
   waiting.sort((a, b) => a - b);
 
-  for(let i = 0; i < N; i++) {
+  for (let i = 0; i < N; i++) {
     sum += waiting[i];
     result.push(sum);
   }
+  
   console.log(result.reduce((a , b) => a + b));
 });
