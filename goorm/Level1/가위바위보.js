@@ -9,8 +9,8 @@ const input = [];
 rl.on("line", function (line) {
   input.push(line); 
 }).on("close", function () { 
-  let list = input[0].split(" ").map(Number);
-	let result = 0;
+    const list = input[0].split(" ").map(Number);
+    let result = 0;
 	
 	if (list.includes(1)) {
 		if (list.includes(3)) {
@@ -31,9 +31,9 @@ rl.on("line", function (line) {
 		}
 	}
 	
-	if(list.includes(1) && list.includes(2) && list.includes(3)) {
+	if (list.includes(1) && list.includes(2) && list.includes(3)) {
 		result = 0;
 	}
 	
-	console.log(result)
+	console.log(result);
 });
