@@ -13,10 +13,8 @@ function solution(n, words) {
         
         if (beforeWord[beforeWord.length - 1] == currentWord[0]
             && !usedWords.includes(currentWord)) {
-            
             usedWords.push(currentWord);
         } else {
-            
             turn = parseInt(i / n) + 1;
             player = i % n + 1;
             
