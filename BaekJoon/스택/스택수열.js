@@ -20,7 +20,7 @@ rl.on("line", function (line) {
     sequence.push(parseInt(input[i]));
   };
 
-  while(sequence.length !== 0) {
+  while (sequence.length !== 0) {
     if (stack[stack.length - 1] === sequence[0]) {
         sequence.shift();
         stack.pop();
