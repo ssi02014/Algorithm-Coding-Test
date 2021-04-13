@@ -22,15 +22,9 @@ rl.on("line", function (line) {
     let command = input[i].split(" ");
 
     if (command[0] === 'P') left.push(command[1]);
-    else if (command[0] === 'L') {
-        if (left.length !== 0) right.push(left.pop());
-    } 
-    else if (command[0] === 'D') {
-        if (right.length !== 0) left.push(right.pop());
-    }
-    else if (command[0] === 'B') {
-        if (left.length !== 0) left.pop();
-    }
+    else if (command[0] === 'L' && left.length !== 0) right.push(left.pop());
+    else if (command[0] === 'D' && right.length !== 0) left.push(right.pop());
+    else if (command[0] === 'B' && left.length !== 0) left.pop();
   }
 
   while (right.length !== 0) {
