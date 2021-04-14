@@ -9,13 +9,13 @@ const input = [];
 rl.on("line", function (line) {
   input.push(line); 
 }).on("close", function () { 
-    let N = parseInt(input.shift());
-    let M = [];
-    let queue = [];
-    let result = [];
+    const N = parseInt(input.shift());
+    const M = [];
+    const queue = [];
+    const result = [];
 
     for (let i = 0; i < N; i++) {
-      M[i] = input[i].split(" ");
+       M[i] = input[i].split(" ");
     };
 
     for (let i = 0; i < M.length; i++) {
