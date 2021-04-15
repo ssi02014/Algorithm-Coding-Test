@@ -12,7 +12,5 @@ function solution(s, n) {
             result += alpha[(alpha.indexOf(el) + n) % 26]
         }
     })
-    
     return result;
-    
 }
