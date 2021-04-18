@@ -17,33 +17,31 @@ rl.on("line", function (line) {
   let operandA = 0;
   let operandB = 0;
 
-  for (let i = 0; i < expression.length; i++) {
-    if (
-      expression[i] === "+" ||
-      expression[i] === "*" ||
-      expression[i] === "-" ||
-      expression[i] === "/"
-    ) {
-      operandA = stack.pop();
-      operandB = stack.pop();
-
-      switch (expression[i]) {
-        case "+":
-          stack.push(operandB + operandA);
-          break;
-        case "-":
-          stack.push(operandB - operandA);
-          break;
-        case "*":
-          stack.push(operandB * operandA);
-          break;
-        case "/":
-          stack.push(operandB / operandA);
-          break;
-      }
-    } else {
-      stack.push(numList[expression[i].charCodeAt() - "A".charCodeAt()]);
+  expression.map((el) => {
+    switch (el) {
+      case "+":
+        operandA = stack.pop();
+        operandB = stack.pop();
+        stack.push(operandB + operandA);
+        break;
+      case "-":
+        operandA = stack.pop();
+        operandB = stack.pop();
+        stack.push(operandB - operandA);
+        break;
+      case "*":
+        operandA = stack.pop();
+        operandB = stack.pop();
+        stack.push(operandB * operandA);
+        break;
+      case "/":
+        operandA = stack.pop();
+        operandB = stack.pop();
+        stack.push(operandB / operandA);
+        break;
+      default:
+        stack.push(numList[el.charCodeAt() - 65]);
     }
-  }
+  });
   console.log(stack[0].toFixed(2));
 });
