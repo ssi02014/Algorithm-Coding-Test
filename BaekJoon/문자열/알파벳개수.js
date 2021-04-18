@@ -11,34 +11,11 @@ rl.on("line", function (line) {
 }).on("close", function () {
   const str = input[0].split("");
 
-  let result = [
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-  ];
+  let result = [];
+
+  for (let i = 0; i < 26; i++) {
+    result.push(0);
+  }
 
   str.map((el) => {
     result[el.charCodeAt() - 97]++;
