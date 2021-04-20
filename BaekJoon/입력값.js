@@ -8,10 +8,4 @@ const input = [];
 
 rl.on("line", function (line) {
   input.push(line);
-}).on("close", function () {
-  let result = [1, 2, 3, 4];
-
-  for (let i in result) {
-    console.log("hi");
-  }
-});
+}).on("close", function () {});
