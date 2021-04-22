@@ -23,5 +23,6 @@ rl.on("line", function (line) {
       else result++;
     }
   }
+
   console.log(result);
 });
