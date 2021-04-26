@@ -15,7 +15,6 @@ rl.on("line", function (line) {
   const N = parseInt(input.shift());
   const numList = [];
   const result = [];
-
   let gcdNum = 0;
 
   for (let i = 0; i < N; i++) {
