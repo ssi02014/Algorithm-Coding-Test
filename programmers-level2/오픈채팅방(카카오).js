@@ -8,9 +8,7 @@ function solution(records) {
     elements = record.split(" ");
 
     for (let i = 0; i < elements.length; i++) {
-      if (elements[0] === "Enter") {
-        temp[elements[1]] = elements[2];
-      } else if (elements[0] === "Change") {
+      if (elements[0] === "Enter" || elements[0] === "Change") {
         temp[elements[1]] = elements[2];
       }
     }
