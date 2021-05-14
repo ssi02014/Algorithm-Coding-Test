@@ -10,31 +10,29 @@ rl.on("line", function (line) {
   input.push(line);
 }).on("close", function () {
   const [N, M] = input[0].split(" ").map(Number);
-  const visited = new Array(N).fill(0);
+  const seq = new Array(N).fill(0);
+  const result = [];
   const output = [];
 
-  let result = "";
-  function recurison(start) {
+  const recurison = (start) => {
     if (start === M) {
-      result += `${output.join(" ")}\n`;
+      result.push([...output]);
       return;
     }
 
     for (let i = 0; i < N; i++) {
-      if (!visited[i]) {
-        visited[i] = 1;
+      if (!seq[i]) {
+        seq[i] = 1;
         output.push(i + 1);
 
         recurison(start + 1);
 
-        //모든 재귀가 끝나면
         output.pop();
-        visited[i] = 0;
+        seq[i] = 0;
       }
     }
-  }
+  };
 
   recurison(0);
-
-  console.log(result);
+  console.log(result.join("\n").replace(/\,/g, " "));
 });
