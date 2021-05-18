@@ -9,12 +9,17 @@ const input = [];
 rl.on("line", function (line) {
   input.push(line);
 }).on("close", function () {
-  const pointList = input[0].split(", ").map(Number);
+  const str = input[1];
 
-  let sum = 0;
-  for (let i = 0; i < pointList.length; i++) {
-    sum += pointList[i];
+  let document = input[0];
+  let count = 0;
+
+  while (true) {
+    if (document.indexOf(str) !== -1) {
+      document = document.replace(str, "0");
+      count++;
+    } else break;
   }
 
-  console.log(Math.round(sum / pointList.length));
+  console.log(count);
 });

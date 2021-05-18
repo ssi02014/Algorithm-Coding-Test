@@ -14,8 +14,8 @@ rl.on("line", function (line) {
   for (let i = 0; i < N; i++) {
     const M = parseInt(input.shift());
     const clothes = input.splice(0, M);
+    const obj = {};
 
-    let obj = {};
     let result = 1;
 
     for (let j = 0; j < clothes.length; j++) {
