@@ -9,15 +9,11 @@ const input = [];
 rl.on("line", function (line) {
   input.push(line);
 }).on("close", function () {
-  const str = input[1];
+  const N = parseInt(input[0]);
+  const sequence = [0, 1, 1];
 
-  let document = input[0];
-  let count = 0;
-
-  while (document.indexOf(str) !== -1) {
-    document = document.replace(str, "0");
-    count++;
+  for (let i = 0; i < N; i++) {
+    sequence.push(sequence[i] + sequence[i + 1]);
   }
-
-  console.log(count);
+  console.log(sequence[N]);
 });
