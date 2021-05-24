@@ -10,12 +10,11 @@ rl.on("line", function (line) {
   input.push(line);
 }).on("close", function () {
   const N = parseInt(input[0]);
-  let M = 0;
 
   for (let i = 1; i <= N; i++) {
-    M = parseInt(input[i]);
+    const M = parseInt(input[i]);
+    const dp = [];
 
-    let dp = [];
     dp[0] = 0;
     dp[1] = 1;
     dp[2] = 2;
