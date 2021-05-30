@@ -21,8 +21,8 @@ rl.on("line", function (line) {
   for (let k = 0; k < N; k++) {
     for (let i = 0; i < N; i++) {
       for (let j = 0; j < N; j++) {
-        if (graph[i][j] == 1) continue;
-        if (graph[i][k] == 1 && graph[k][j] == 1) graph[i][j] = 1;
+        if (graph[i][j] === 1) continue;
+        if (graph[i][k] && graph[k][j]) graph[i][j] = 1;
       }
     }
   }
