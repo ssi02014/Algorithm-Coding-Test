@@ -1,3 +1,15 @@
+function findPosition(keyboard, number) {
+  let handPosition = [];
+
+  for (let i = 0; i < keyboard.length; i++) {
+    for (let j = 0; j < keyboard[i].length; j++) {
+      if (keyboard[i][j] === number) handPosition = [i, j];
+    }
+  }
+
+  return handPosition;
+}
+
 function solution(numbers, hand) {
   const keyboard = [
     ["*", 0, "#"],
@@ -11,7 +23,7 @@ function solution(numbers, hand) {
     [0, 2],
   ];
   let [leftDist, rightDist] = [0, 0];
-  let coord = [];
+  let centerNum = [];
   let result = "";
 
   numbers.map((number) => {
@@ -22,42 +34,31 @@ function solution(numbers, hand) {
       result += "R";
       rightHand = findPosition(keyboard, number);
     } else {
-      coord = findPosition(keyboard, number);
-
+      centerNum = findPosition(keyboard, number);
       leftDist =
-        Math.abs(leftHand[0] - coord[0]) + Math.abs(leftHand[1] - coord[1]);
+        Math.abs(leftHand[0] - centerNum[0]) +
+        Math.abs(leftHand[1] - centerNum[1]);
       rightDist =
-        Math.abs(rightHand[0] - coord[0]) + Math.abs(rightHand[1] - coord[1]);
+        Math.abs(rightHand[0] - centerNum[0]) +
+        Math.abs(rightHand[1] - centerNum[1]);
 
       if (leftDist > rightDist) {
         result += "R";
-        rightHand = coord;
+        rightHand = centerNum;
       } else if (leftDist < rightDist) {
         result += "L";
-        leftHand = coord;
+        leftHand = centerNum;
       } else {
         if (hand === "left") {
           result += "L";
-          leftHand = coord;
+          leftHand = centerNum;
         } else {
           result += "R";
-          rightHand = coord;
+          rightHand = centerNum;
         }
       }
     }
   });
 
   return result;
-}
-
-function findPosition(keyboard, number) {
-  let handPosition = [];
-
-  for (let i = 0; i < keyboard.length; i++) {
-    for (let j = 0; j < keyboard[i].length; j++) {
-      if (keyboard[i][j] === number) handPosition = [i, j];
-    }
-  }
-
-  return handPosition;
 }
