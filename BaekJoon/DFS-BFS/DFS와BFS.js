@@ -63,8 +63,8 @@ rl.on("line", function (line) {
     connection[i - 1] = input[i].split(" ").map(Number);
   }
 
-  dfsVisited = new Array(nodeCount + 1).fill(false);
-  bfsVisited = new Array(nodeCount + 1).fill(false);
+  dfsVisited = Array(nodeCount + 1).fill(false);
+  bfsVisited = Array(nodeCount + 1).fill(false);
 
   adjacencyMatrix(nodeCount, connection); //인접 행렬 생성
 
