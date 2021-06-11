@@ -20,7 +20,7 @@ rl.on("line", function (line) {
   d[0] = 0;
 
   for (let i = 0; i < N; i++) {
-    for (let j = money[i]; j < M + 1; j += money[i]) {
+    for (let j = money[i]; j <= M; j += money[i]) {
       if (d[j - money[i]] !== 10001) {
         d[j] = Math.min(d[j], d[j - money[i]] + 1);
       }
