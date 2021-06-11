@@ -28,7 +28,6 @@ rl.on("line", function (line) {
       }
     });
 
-    console.log(nx, ny);
     if (nx < 1 || ny < 1 || nx > N || ny > N) continue;
 
     [x, y] = [nx, ny];
