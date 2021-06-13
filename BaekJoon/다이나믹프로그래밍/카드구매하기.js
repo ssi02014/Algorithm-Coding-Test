@@ -14,11 +14,11 @@ rl.on("line", function (line) {
 
   const dp = new Array(N + 1).fill(0);
 
-  for(let i = 1; i <= N; i++) {
-    for(let j = 1; j <= i; j++) {
+  for (let i = 1; i <= N; i++) {
+    for (let j = 1; j <= i; j++) {
       dp[i] = Math.max(dp[i], dp[i - j] + cards[j - 1]);
     }
   }
 
-  console.log(dp);
+  console.log(dp[N]);
 });
