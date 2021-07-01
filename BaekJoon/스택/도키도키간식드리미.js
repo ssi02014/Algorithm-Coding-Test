@@ -10,20 +10,20 @@ rl.on("line", function (line) {
   input.push(line);
 }).on("close", function () {
   const N = parseInt(input[0]);
-  const arr = input[1].split(" ").map(Number);
+  const queue = input[1].split(" ").map(Number);
   const stack = [];
 
   let min = 1;
 
-  while (arr.length > 0) {
-    if (arr[0] === min) {
-      arr.shift();
+  while (queue.length > 0) {
+    if (queue[0] === min) {
+      queue.shift();
       min++;
     } else if (stack.length > 0 && stack[stack.length - 1] === min) {
       stack.pop();
       min++;
     } else {
-      stack.push(arr.shift());
+      stack.push(queue.shift());
     }
   }
 
