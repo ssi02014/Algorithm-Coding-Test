@@ -14,9 +14,8 @@ rl.on("line", function (line) {
   let result = 0;
 
   for (let i = 0; i < laser.length; i++) {
-    if (laser[i] === "(") {
-      stack.push(laser[i]);
-    } else {
+    if (laser[i] === "(") stack.push(laser[i]);
+    else {
       stack.pop();
 
       if (laser[i - 1] === "(") result += stack.length;
