@@ -1,24 +1,28 @@
-function solution(n) {
-    let answer = 0;
-    let point = 0;
+const readline = require("readline");
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout,
+});
 
-//    for (let i = 0; i < n.length; i++) {
-//         if(n[i] === 'O') {
-//             point++;
-//         } else if (n[i] === 'X') {
-//             point = 0;
-//         }
-//    }
+const input = [];
 
-    n.forEach(el => {
-        el === 'O' ? point++ : point = 0;
-        answer += point;
-    })
-    return answer;
-}
+rl.on("line", function (line) {
+  input.push(line);
+}).on("close", function () {
+  const N = parseInt(input[0]);
+  let result = "";
 
-console.log(solution(['O', 'O', 'X', 'X', 'O', 'X', 'X', 'O', 'O', 'O']));
-console.log(solution(['O', 'O', 'X', 'X', 'O', 'O', 'X', 'X', 'O', 'O']));
-console.log(solution(['O', 'X', 'O', 'X', 'O', 'X', 'O', 'X', 'O', 'X', 'O', 'X', 'O', 'X']));
-console.log(solution(['O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O']));
-console.log(solution(['O', 'O', 'O', 'O', 'X', 'O', 'O', 'O', 'O', 'X', 'O', 'O', 'O', 'O', 'X']));
+  for (let i = 1; i <= N; i++) {
+    const str = input[i];
+    let count = 0;
+    let sum = 0;
+
+    for (let j = 0; j < str.length; j++) {
+      str[j] === "O" ? (count += 1) : (count = 0);
+      sum += count;
+    }
+    result += sum + "\n";
+  }
+
+  console.log(result);
+});
