@@ -11,8 +11,8 @@ rl.on("line", function (line) {
 }).on("close", function () {
   const [A, B, C, D] = input[0].split(" ");
 
-  let AB = A + B;
-  let CD = C + D;
+  const AB = A + B;
+  const CD = C + D;
 
   let result = parseInt(AB) + parseInt(CD);
 
