@@ -13,11 +13,12 @@ rl.on("line", function (line) {
   const networkLine = parseInt(input[1]);
   const directConnectList = [];
   const graph = [...Array(computers + 1)].map(() => []);
+  // const graph2 = Array(computers + 1).fill([]); 모든 배열에 값이 다같이 들어감
   const dfsVisited = Array(computers + 1).fill(false);
   let result = 0;
 
   for (let i = 2; i < input.length; i++) {
-    directConnect[i - 2] = input[i].split(" ").map(Number);
+    directConnectList[i - 2] = input[i].split(" ").map(Number);
   }
 
   directConnectList.forEach((nodes) => {
@@ -39,6 +40,5 @@ rl.on("line", function (line) {
   }
 
   dfs(1);
-
   console.log(result - 1);
 });
