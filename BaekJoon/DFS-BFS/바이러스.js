@@ -11,39 +11,34 @@ rl.on("line", function (line) {
 }).on("close", function () {
   const computers = parseInt(input[0]);
   const networkLine = parseInt(input[1]);
-  const directConnect = [];
-  let graph = [];
-  let dfsVisited = Array(computers + 1).fill(false);
+  const directConnectList = [];
+  const graph = [...Array(computers + 1)].map(() => []);
+  const dfsVisited = Array(computers + 1).fill(false);
   let result = 0;
 
   for (let i = 2; i < input.length; i++) {
     directConnect[i - 2] = input[i].split(" ").map(Number);
   }
 
-  function adjacencyMatrix(computers, input) {
-    graph = Array.from(Array(computers + 1), () =>
-      Array(computers + 1).fill(0)
-    );
+  directConnectList.forEach((nodes) => {
+    const [node1, node2] = nodes;
 
-    for (let i of input) {
-      let [x, y] = i;
-      [graph[x][y], graph[y][x]] = [1, 1];
-    }
-  }
+    graph[node1].push(node2);
+    graph[node2].push(node1);
+  });
 
-  function dfs(computers, startNode) {
+  function dfs(startNode) {
     if (dfsVisited[startNode]) return;
 
     dfsVisited[startNode] = true;
     result++;
 
-    for (let i = 1; i < computers; i++) {
-      if (graph[startNode][i] && !dfsVisited[i]) dfs(computers, i);
-    }
+    graph[startNode].map((connectedNode) => {
+      if (!dfsVisited[connectedNode]) dfs(connectedNode);
+    });
   }
 
-  adjacencyMatrix(computers, directConnect);
-  dfs(computers, 1);
+  dfs(1);
 
   console.log(result - 1);
 });
