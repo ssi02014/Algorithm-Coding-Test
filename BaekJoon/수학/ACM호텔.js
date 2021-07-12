@@ -10,34 +10,18 @@ rl.on("line", function (line) {
   input.push(line);
 }).on("close", function () {
   const T = parseInt(input[0]);
-  const result = [];
 
   for (let i = 1; i <= T; i++) {
-    const [H, W, N] = input[i].split(" ").map(Number);
-    let count = 0;
+    const [H, _, N] = input[i].split(" ").map(Number);
 
-    for (let j = 1; j <= W; j++) {
-      for (let k = 1; k <= H; k++) {
-        let strX = "";
-        let roomNumber = "";
+    let floor = N % H === 0 ? H : N % H;
+    let roomNum = Math.ceil(N / H);
 
-        count++;
-
-        if (j < 10) {
-          strX = "0" + j;
-          roomNumber = `${k}${strX}`;
-        } else {
-          roomNumber = `${k}${j}`;
-        }
-
-        if (count === N) {
-          result.push(roomNumber);
-          break;
-        } else if (count > N) {
-          break;
-        }
-      }
+    if (roomNum < 10) {
+      roomNum = "0" + roomNum;
+      console.log(`${floor}${roomNum}`);
+    } else {
+      console.log(`${floor}${roomNum}`);
     }
   }
-  console.log(result.join("\n"));
 });
