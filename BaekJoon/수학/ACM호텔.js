@@ -33,7 +33,9 @@ rl.on("line", function (line) {
         if (count === N) {
           result.push(roomNumber);
           break;
-        } else if (count > N) break;
+        } else if (count > N) {
+          break;
+        }
       }
     }
   }
