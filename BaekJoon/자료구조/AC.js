@@ -9,29 +9,32 @@ const input = [];
 rl.on("line", function (line) {
   input.push(line);
 }).on("close", function () {
-  const T = input.shift();
+  const T = parseInt(input[0]);
 
-  for (let i = 1; i <= T; i++) {
-    const [p, n, arr] = input.splice(0, 3);
+  for (let i = 0; i < T; i++) {
+    const [p, n, arr] = input.splice(1, 3);
 
-    const replaceArr = arr.replace(/[\[\]/]/g, "").split(",");
+    const replaceArr = arr
+      .replace(/[\[\]\]/]/g, "")
+      .split(",")
+      .filter((el) => el !== "");
 
-    console.log(replaceArr);
-    // console.log(onReverseAndDrop(p, replaceArr));
+    console.log(onReverseAndDrop(p, replaceArr)); //정답 제출
   }
 
   function onReverseAndDrop(str, arr) {
     for (let i = 0; i < str.length; i++) {
-      if (str[i] === "R") {
-        arr.reverse();
-      } else if (str[i] === "D") {
-        if (arr.length === 0) {
-          return "error";
-        } else {
-          arr.shift();
-        }
+      let count = 0;
+
+      if (str[i] === "R") count++;
+      else {
+        if (arr.length === 0) return "error";
+        if (count % 2 === 0) arr.shift();
+        else arr.pop();
       }
+
+      if (count % 2 === 1) arr.reverse();
     }
-    return arr;
+    return "[" + arr.join(",") + "]";
   }
 });
