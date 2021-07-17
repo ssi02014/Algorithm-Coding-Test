@@ -35,6 +35,6 @@ rl.on("line", function (line) {
 
       if (count % 2 === 1) arr.reverse();
     }
-    return "[" + arr.join(",") + "]";
+    return `[${arr.join(",")}]`;
   }
 });
