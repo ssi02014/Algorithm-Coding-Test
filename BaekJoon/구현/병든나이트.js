@@ -18,4 +18,5 @@ rl.on("line", function (line) {
   else result = M - 7 + 5;
 
   console.log(result);
+  console.log(result);
 });
