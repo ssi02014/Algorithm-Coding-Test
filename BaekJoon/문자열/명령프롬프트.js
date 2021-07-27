@@ -10,16 +10,13 @@ rl.on("line", function (line) {
   input.push(line);
 }).on("close", function () {
   const N = parseInt(input[0]);
-  const first = input[1];
-  let result = first.split("");
+  const result = input[1].split("");
 
   for (let i = 2; i <= N; i++) {
-    let temp = input[i];
+    const temp = input[i];
 
-    for (let j = 0; j < first.length; j++) {
-      if (first[j] !== temp[j]) {
-        result[j] = "?";
-      }
+    for (let j = 0; j < result.length; j++) {
+      if (result[j] !== temp[j]) result[j] = "?";
     }
   }
 
