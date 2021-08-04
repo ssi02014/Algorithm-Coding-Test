@@ -18,5 +18,26 @@ rl.on("line", function (line) {
     appleSet[i - 2] = parseInt(input[i]);
   }
 
+  let idx = 1;
+
+  appleSet.map((el) => {
+    while (true) {
+      let flag = false;
+
+      for (let j = idx; j <= idx + (M - 1); j++) {
+        if (j === el) {
+          flag = true;
+          break;
+        }
+      }
+
+      if (flag) break;
+      if (idx > el) idx--;
+      else idx++;
+
+      result++;
+    }
+  });
+
   console.log(result);
 });
