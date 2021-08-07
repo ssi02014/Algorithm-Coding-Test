@@ -6,21 +6,37 @@ const rl = readline.createInterface({
 
 const input = [];
 
-const binarySearch = (array, target, start, end) => {
-  let mid = 0;
-
-  while (state <= end) {
-    mid = Math.floor((start + end) / 2);
-    if (array[mid] === target) {
-      return mid;
-    } else if (array[mid] > target) {
-      end = mid - 1;
-    } else {
-      start = mid + 1;
-    }
-  }
-  return -1;
-};
 rl.on("line", function (line) {
   input.push(line);
-}).on("close", function () {});
+}).on("close", function () {
+  const n = +input[0];
+  const nList = input[1]
+    .split(" ")
+    .map(Number)
+    .sort((a, b) => a - b);
+  const m = +input[2];
+  const mList = input[3].split(" ").map(Number);
+  let result = "";
+
+  for (let i = 0; i < m; i++) {
+    let first = 0;
+    let last = m - 1;
+    let checked = false;
+
+    while (first <= last) {
+      let mid = Math.floor((first + last) / 2);
+
+      if (nList[mid] === mList[i]) {
+        checked = true;
+        break;
+      } else {
+        if (nList[mid] < mList[i]) first = mid + 1;
+        else if (nList[mid] > mList[i]) last = mid - 1;
+      }
+    }
+
+    if (checked) console.log(1);
+    else console.log(0);
+  }
+  // console.log(result);
+});
