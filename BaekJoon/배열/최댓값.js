@@ -1,9 +1,18 @@
-function solution(n) {
-    const maxNum = Math.max(...n);
-    const maxNumIndex = n.indexOf(maxNum) + 1;
+const readline = require("readline");
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout,
+});
 
-    const answer = `최댓값: ${maxNum}, index: ${maxNumIndex}`;
+const input = [];
 
-    return answer;
-}
-console.log(solution([3, 29, 38, 12, 57, 74, 40, 85, 61]));
+rl.on("line", function (line) {
+  input.push(line);
+}).on("close", function () {
+  const list = input.slice(0, input.length).map(Number);
+  const maxNum = Math.max(...list);
+  const idx = list.indexOf(maxNum) + 1;
+
+  console.log(maxNum);
+  console.log(idx);
+});
