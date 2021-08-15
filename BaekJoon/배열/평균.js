@@ -1,22 +1,21 @@
-function solution(n) {
-    const changePoint = [];
-    const maxNum = Math.max(...n);
-    let answer = 0;
-    
-    // for (let i = 0; i < n.length; i++) {
-    //     changePoint.push(n[i] / maxNum * 100);
-    // }
-    
-    n.forEach(el => {
-        changePoint.push(el / maxNum * 100);
-    })
+const readline = require("readline");
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout,
+});
 
-    answer = changePoint.reduce((a, b) => a + b);
-    return answer / n.length;
-}
+const input = [];
 
-console.log(solution([40, 80, 60]));
-console.log(solution([10, 20, 30]));
-console.log(solution([1, 100, 100, 100]));
-console.log(solution([1, 2, 4, 8, 16]));
-console.log(solution([3, 10]));
+rl.on("line", function (line) {
+  input.push(line);
+}).on("close", function () {
+  const n = parseInt(input[0]);
+  const numList = input[1].split(" ").map(Number);
+  const m = Math.max(...numList);
+  const operationList = [];
+  numList.forEach((el) => {
+    operationList.push((el / m) * 100);
+  });
+
+  console.log(operationList.reduce((a, b) => a + b) / n);
+});
