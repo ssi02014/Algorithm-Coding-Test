@@ -49,12 +49,11 @@ rl.on("line", function (line) {
 
   function insertValueGraph() {
     [m, n, k] = input.shift().split(" ").map(Number);
-    const nodes = input.splice(0, k);
-    
+
     //그래프 초기화할때는 heigth(m)가 첫번째, width(n)가 2번째로 들어가야됨
     graph = Array.from(Array(m), () => new Array(n).fill(0));
 
-    nodes.map(el => {
+    input.splice(0, k).map(el => {
       const [x, y] = el.split(" ").map(Number);
       graph[x][y] = 1;
     });
