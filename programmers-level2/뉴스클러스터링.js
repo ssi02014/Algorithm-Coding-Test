@@ -1,23 +1,3 @@
-const filterSplitStr = (str) => {
-  const list = [];
-
-  for (let i = 0; i < str.length; i++) {
-    let temp = "";
-    let match = [];
-
-    for (let j = i + 1; j <= i + 1; j++) {
-      if (!str[j]) break;
-      temp += str[i] + str[j];
-    }
-
-    match = temp.match(/[A-Z]/gi);
-
-    if (match !== null && match.length === 2) list.push(match.join(""));
-  }
-
-  return list.sort();
-};
-
 function solution(str1, str2) {
   const strOneUpper = str1.toUpperCase();
   const strTwoUpper = str2.toUpperCase();
@@ -39,6 +19,25 @@ function solution(str1, str2) {
 
   if (!union.length) return 65536;
   else if (!intersection.length) return 0;
-
   return Math.floor((intersection.length / union.length) * 65536);
+}
+
+function filterSplitStr(str) {
+  const list = [];
+
+  for (let i = 0; i < str.length; i++) {
+    let temp = "";
+    let match = [];
+
+    for (let j = i + 1; j <= i + 1; j++) {
+      if (!str[j]) break;
+      temp += str[i] + str[j];
+    }
+
+    match = temp.match(/[A-Z]{2}/gi);
+
+    if (match) list.push(match.join(""));
+  }
+
+  return list.sort();
 }
