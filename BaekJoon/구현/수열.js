@@ -16,16 +16,14 @@ rl.on("line", function (line) {
   let len = 1;
 
   for (let i = 1; i < n; i++) {
-    if (list[i] <= list[i - 1]) len++;
-    else len = 1;
+    list[i] <= list[i - 1] ? len++ : (len = 1);
     maxValue = Math.max(maxValue, len);
   }
 
   len = 1;
 
   for (let i = 1; i < n; i++) {
-    if (list[i] >= list[i - 1]) len++;
-    else len = 1;
+    list[i] >= list[i - 1] ? len++ : (len = 1);
     maxValue = Math.max(maxValue, len);
   }
 
