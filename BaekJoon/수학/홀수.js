@@ -10,11 +10,8 @@ rl.on("line", function (line) {
   input.push(line);
 }).on("close", function () {
   const oddNumList = input.map(Number).filter((el) => el % 2);
-  let min = 0;
-  let sum = 0;
-
-  sum = oddNumList.reduce((acc, cur) => acc + cur, 0);
-  min = Math.min(...oddNumList);
+  let min = Math.min(...oddNumList);
+  let sum = oddNumList.reduce((acc, cur) => acc + cur, 0);
 
   sum && console.log(sum);
   !oddNumList.length ? console.log(-1) : console.log(min);
