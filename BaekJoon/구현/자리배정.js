@@ -9,38 +9,47 @@ const input = [];
 rl.on("line", function (line) {
   input.push(line);
 }).on("close", function () {
-  const [w, h] = input[0].split(" ").map(Number);
-  const position = parseInt(input[1]);
-  const map = Array.from(Array(h), () => Array(w).fill(0));
-  const [dx, dy] = [
-    [-1, 0, 1, 0],
-    [0, 1, 0, -1],
-  ];
+  let [col, row] = input[0].split(" ").map(Number);
+  const k = +input[1];
+  const hall = Array.from(Array(row), () => Array(col).fill(0));
 
-  let cnt = 1;
   let x = 0;
-  let y = h - 1;
-  let dir = 0;
+  let y = -1;
+  let count = 1;
+  let result = "";
 
-  while (cnt !== position) {
-    console.log(y, x, dir);
-    map[y][x] = cnt;
+  for (let i = row; i > 0; i -= 2) {
+    for (let j = 0; j < i; j++) {
+      ++y;
 
-    let nx = x + dx[dir];
-    let ny = y + dy[dir];
+      if (hall[y][x]) break;
+      hall[y][x] = count++;
+    }
+    for (let j = 0; j < col - 1; j++) {
+      ++x;
 
-    if (nx < 0 || ny < 0 || nx >= w || ny >= h || map[ny][nx] !== 0) {
-      dir++;
-      if (dir === 4) dir = 0;
-      nx = x + dx[dir];
-      ny = y + dy[dir];
+      if (hall[y][x]) break;
+      hall[y][x] = count++;
+    }
+    for (let j = 0; j < i - 1; j++) {
+      --y;
+
+      if (hall[y][x]) break;
+      hall[y][x] = count++;
+    }
+    for (let j = 0; j < col - 2; j++) {
+      --x;
+
+      if (hall[y][x]) break;
+      hall[y][x] = count++;
     }
 
-    console.log(nx, ny);
-
-    x = nx;
-    y = ny;
+    col -= 2;
   }
 
-  console.log(map);
+  hall.map((list, y) => {
+    list.map((el, x) => el === k && (result += `${x + 1} ${y + 1}`));
+  });
+
+  !result ? console.log(0) : console.log(result);
 });
