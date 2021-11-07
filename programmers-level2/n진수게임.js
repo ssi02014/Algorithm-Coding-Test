@@ -1,19 +1,15 @@
 function solution(n, t, m, p) {
   let result = "";
-  let numbers = [];
-  let count = 0;
+  let numbers = "";
   let idx = p - 1;
 
   for (let i = 0; i <= m * t; i++) {
-    numbers[i] = i.toString(n).toUpperCase();
+    numbers += i.toString(n).toUpperCase();
   }
 
-  numbers = numbers.join("");
-
-  while (count !== t) {
+  for (let i = 0; i < t; i++) {
     result += numbers[idx];
     idx += m;
-    count++;
   }
 
   return result;
