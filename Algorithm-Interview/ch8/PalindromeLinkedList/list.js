@@ -12,9 +12,7 @@ rl.on("line", function (line) {
   const n = input[0].split("->").map(Number);
   let idx = 0;
   while (idx < n.length) {
-    if (n[idx] !== n.pop()) {
-      return console.log(false);
-    }
+    if (n[idx] !== n.pop()) console.log(false);
     idx++;
   }
   return console.log(true);

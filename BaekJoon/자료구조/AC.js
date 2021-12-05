@@ -11,30 +11,34 @@ rl.on("line", function (line) {
 }).on("close", function () {
   const T = parseInt(input[0]);
 
+  let result = "";
+
   for (let i = 0; i < T; i++) {
     const [p, n, arr] = input.splice(1, 3);
-
-    const replaceArr = arr
+    let flag = 1;
+    let deleteCount = 0;
+    const list = arr
       .replace(/[\[\]\]/]/g, "")
       .split(",")
       .filter((el) => el !== "");
 
-    console.log(onReverseAndDrop(p, replaceArr)); //정답 제출
-  }
-
-  function onReverseAndDrop(str, arr) {
-    for (let i = 0; i < str.length; i++) {
-      let count = 0;
-
-      if (str[i] === "R") count++;
+    for (let j = 0; j < p.length; j++) {
+      if (p[j] === "R") flag *= -1;
       else {
-        if (arr.length === 0) return "error";
-        if (count % 2 === 0) arr.shift();
-        else arr.pop();
-      }
+        deleteCount++;
+        if (deleteCount > n) {
+          flag = -2;
+          break;
+        }
 
-      if (count % 2 === 1) arr.reverse();
+        if (flag === 1) list.shift();
+        else list.pop();
+      }
     }
-    return `[${arr.join(",")}]`;
+
+    if (flag === 1) result += `[${[...list].join(",")}]` + "\n";
+    else if (flag === -1) result += `[${[...list].reverse().join(",")}]` + "\n";
+    else result += "error" + "\n";
   }
+  console.log(result);
 });
