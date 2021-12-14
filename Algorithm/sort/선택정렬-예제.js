@@ -1,14 +1,15 @@
-function soultion() {
-    let list = [7, 5, 9, 0, 3, 1, 6, 2, 4, 8];
-
-    for (let i = 0; i < list.length; i++) {
-        let minIndex = i;
-        for (let j = i + 1; j < list.length; j++) {
-            if (list[minIndex] > list[j]) minIndex = j
-        }
-        [list[i], list[minIndex]] = [list[minIndex], list[i]];
+function selectSort(array) {
+  for (let i = 0; i < array.length - 1; i++) {
+    let minIndex = i;
+    for (let j = i + 1; j < array.length; j++) {
+      if (array[j] < array[minIndex]) {
+        minIndex = j;
+      }
     }
-    return list;
+    [array[minIndex], array[i]] = [array[i], array[minIndex]];
+  }
+  return array;
 }
 
-console.log(soultion());
+const array = [1, 5, 4, 7, 2, 6, 8, 3];
+console.log(selectSort(array));
