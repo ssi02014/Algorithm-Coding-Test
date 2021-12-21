@@ -1,3 +1,4 @@
+// 회문 문자열 -> 영어로 팰린드롬
 function solution(s) {
   const list = s.toLowerCase().split("");
 
