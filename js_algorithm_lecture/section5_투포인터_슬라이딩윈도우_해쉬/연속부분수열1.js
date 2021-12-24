@@ -48,7 +48,6 @@ function lectureSolution(m, arr) {
       sum -= arr[left++];
       if (sum === m) {
         result++;
-        // console.log(left, i);
       }
     }
   }
