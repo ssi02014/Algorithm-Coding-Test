@@ -1,16 +1,16 @@
 function solution(need, plan) {
   const planList = plan.split("");
-  const queue = [];
+  const stack = [];
 
   while (planList.length) {
     const data = planList.shift();
 
     if (need.includes(data)) {
-      queue.push(data);
+      stack.push(data);
     }
   }
 
-  if (queue.join("") !== need) return "NO";
+  if (stack.join("") !== need) return "NO";
   return "YES";
 }
 
