@@ -19,8 +19,8 @@ function solution(size, arr) {
 function lru(size, arr) {
   const result = [...arr];
 
-  for (let j = size; j >= 1; j--) {
-    result[j] = result[j - 1];
+  for (let i = size; i >= 1; i--) {
+    result[i] = result[i - 1];
   }
   return result;
 }
