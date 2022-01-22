@@ -3,26 +3,27 @@ function solution(size, arr) {
 
   for (let i = 0; i < arr.length; i++) {
     const el = arr[i];
-    let pos = -1;
-
-    for (let j = 0; j < size; j++) {
-      if (el === arr[j]) pos = j;
-    }
+    const pos = result.indexOf(el);
 
     if (pos === -1) {
-      for (let j = size - 1; j >= 1; j--) {
-        result[j] = result[j - 1];
-      }
+      result = lru(size - 1, result);
     } else {
-      for (let j = pos; j >= 1; j--) {
-        result[j] = result[j - 1];
-      }
+      result = lru(pos, result);
     }
     result[0] = el;
   }
 
-  console.log(result);
+  return result;
+}
+
+function lru(size, arr) {
+  const result = [...arr];
+
+  for (let j = size; j >= 1; j--) {
+    result[j] = result[j - 1];
+  }
+  return result;
 }
 
 let arr = [1, 2, 3, 2, 6, 2, 3, 5, 7];
-solution(5, arr);
+console.log(solution(5, arr));
