@@ -2,24 +2,23 @@ function solution(size, arr) {
   let result = Array(size).fill(0);
 
   for (let i = 0; i < arr.length; i++) {
-    const el = arr[i];
-    const pos = result.indexOf(el);
+    const pos = result.indexOf(arr[i]);
 
     if (pos === -1) {
       result = lru(size - 1, result);
     } else {
       result = lru(pos, result);
     }
-    result[0] = el;
+    result[0] = arr[i];
   }
 
   return result;
 }
 
-function lru(size, arr) {
+function lru(length, arr) {
   const result = [...arr];
 
-  for (let i = size; i >= 1; i--) {
+  for (let i = length; i >= 1; i--) {
     result[i] = result[i - 1];
   }
   return result;
