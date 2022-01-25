@@ -1,5 +1,4 @@
 var maxProfit = function (prices) {
-  let pos = 0;
   let buyMin = Number.MAX_SAFE_INTEGER;
   let sellMax = Number.MIN_SAFE_INTEGER;
 
