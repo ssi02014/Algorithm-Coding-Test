@@ -7,13 +7,9 @@ function solution(target, arr) {
   while (start <= end) {
     const mid = Math.floor((start + end) / 2);
 
-    if (arr[mid] === target) {
-      return mid + 1;
-    } else if (arr[mid] < target) {
-      start = mid + 1;
-    } else {
-      end = mid - 1;
-    }
+    if (arr[mid] === target) return mid + 1;
+    else if (arr[mid] < target) start = mid + 1;
+    else end = mid - 1;
   }
 }
 
