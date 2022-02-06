@@ -8,4 +8,6 @@ const input = [];
 
 rl.on("line", function (line) {
   input.push(line);
-}).on("close", function () {});
+}).on("close", function () {
+  // 풀이
+});
