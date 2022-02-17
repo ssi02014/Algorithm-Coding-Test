@@ -9,8 +9,7 @@ const input = [];
 rl.on("line", function (line) {
   input.push(line);
 }).on("close", function () {
-  const [str1, str2] = input.slice(0);
-  const init = Array(26);
+  const [str1, str2] = input;
   const check1 = Array.from(Array(26).fill(0));
   const check2 = Array.from(Array(26).fill(0));
   let result = 0;
