@@ -10,11 +10,15 @@ rl.on("line", function (line) {
   input.push(line);
 }).on("close", function () {
   const n = +input[0];
+  let a = 0;
+  let b = 1;
+  let temp = 0;
 
-  function fibo(n) {
-    if (n < 2) return n;
-    return fibo(n - 1) + fibo(n - 2);
+  for (let i = 0; i < n - 1; i++) {
+    temp = b;
+    b = a + b;
+    a = temp;
   }
 
-  console.log(fibo(n));
+  console.log(b);
 });
