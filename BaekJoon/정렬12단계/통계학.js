@@ -1,50 +1,45 @@
-const readline = require("readline"); 
-const rl = readline.createInterface({ 
-    input: process.stdin, 
-    output: process.stdout, 
-}); 
+const readline = require("readline");
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout,
+});
 
 const input = [];
 
 rl.on("line", function (line) {
-    input.push(line); 
-}).on("close", function () { 
-    const N = input.shift();
-    const list = [];
-    const compareObj = {};
-    const modeList = [];
+  input.push(line);
+}).on("close", function () {
+  const n = +input[0];
+  const arr = [];
+  const obj = {};
+  let result = "";
 
-    let maxNum = 0;
-    let mode = 0;
-    
+  for (let i = 1; i <= n; i++) {
+    arr[i - 1] = +input[i];
+  }
 
-    for (let i = 0; i < N; i++) {
-        list.push(parseInt(input[i]));
-    }
+  const mid = Math.floor(arr.length / 2);
+  const sum = arr.reduce((acc, cur) => acc + cur, 0);
+  const avg = Math.round(sum / arr.length);
 
-    list.sort((a, b) => a - b);
+  arr.sort((a, b) => a - b);
+  arr.forEach((num) => {
+    if (obj[num]) obj[num]++;
+    else obj[num] = 1;
+  });
 
-    for (let i = 0; i < N; i++) {
-        compareObj[list[i]] = 0;
-    }
+  const maxCount = Math.max(...Object.values(obj));
+  const max = arr[arr.length - 1];
+  const min = arr[0];
 
-    for (let i = 0; i < N; i++) {
-        compareObj[list[i]]++;
-    }
+  const newArr = Object.entries(obj)
+    .filter(([_, value]) => value === maxCount)
+    .sort((a, b) => +a[0] - +b[0]);
 
-    maxNum = Math.max(...Object.values(compareObj));
+  result += avg + "\n";
+  result += arr[mid] + "\n";
+  result += newArr.length > 1 ? newArr[1][0] + "\n" : newArr[0][0] + "\n";
+  result += max - min;
 
-    for (let el in compareObj) {
-        if (compareObj[el] === maxNum) modeList.push(parseInt(el));
-    }
-    
-    modeList.sort((a, b) => a - b);
-
-    if (modeList.length > 1) mode = modeList[1];
-    else mode = modeList[0];
-
-    console.log(Math.round(list.reduce((a, b) => a + b) / N));
-    console.log(list[Math.floor(N / 2)]);
-    console.log(mode);
-    console.log(list[N - 1] - list[0]);
+  console.log(result);
 });
