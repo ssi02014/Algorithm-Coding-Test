@@ -24,16 +24,15 @@ rl.on("line", function (line) {
 
   function partition(row, col, size) {
     if (checkColor(row, col, size)) {
-      board[row][col] === 0 ? white++ : blue++;
-      return;
+      return board[row][col] ? blue++ : white++;
     }
 
-    let newSize = Math.floor(size / 2);
+    let halfSize = Math.floor(size / 2);
 
-    partition(row, col, newSize);
-    partition(row, col + newSize, newSize);
-    partition(row + newSize, col, newSize);
-    partition(row + newSize, col + newSize, newSize);
+    partition(row, col, halfSize); // 2사분면
+    partition(row, col + halfSize, halfSize); // 1사분면
+    partition(row + halfSize, col, halfSize); // 3사분면
+    partition(row + halfSize, col + halfSize, halfSize); // 4사분면
   }
 
   function checkColor(row, col, size) {
