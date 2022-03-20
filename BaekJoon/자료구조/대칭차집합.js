@@ -19,9 +19,8 @@ rl.on("line", function (line) {
   }
   for (let el of b) {
     if (!obj[el]) obj[el] = 1;
-    else obj[el]--;
-
-    if (obj[el] === 0) delete obj[el];
+    else delete obj[el];
   }
+
   console.log(Object.values(obj).length);
 });
