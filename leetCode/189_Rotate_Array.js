@@ -3,7 +3,8 @@
 //  * @param {number} k
 //  * @return {void} Do not return anything, modify nums in-place instead.
 //  */
-var rotate = function (nums, k) {
+// solution1
+var rotate1 = function (nums, k) {
   let temp = [];
 
   if (k > nums.length) {
@@ -16,10 +17,11 @@ var rotate = function (nums, k) {
   nums.unshift(...temp);
 };
 
-// var rotate = function(nums, k) {
-//   if( k >= nums.length){
-//     k = k % nums.length;
-//   }
-//   const temp = nums.splice(-k);
-//   nums.unshift(...temp);
-// }
+// solution2
+var rotate2 = function (nums, k) {
+  if (k >= nums.length) {
+    k = k % nums.length;
+  }
+  const temp = nums.splice(-k);
+  nums.unshift(...temp);
+};
