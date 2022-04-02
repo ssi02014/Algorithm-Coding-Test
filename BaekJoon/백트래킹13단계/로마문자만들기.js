@@ -18,17 +18,17 @@ rl.on("line", function (line) {
 
   console.log(result);
 
-  function backTracking(depth, idx, s) {
+  function backTracking(depth, idx, sum) {
     if (depth === n) {
-      if (numberList[s] === 0) {
-        numberList[s] = 1;
+      if (numberList[sum] === 0) {
+        numberList[sum] = 1;
         result++;
       }
       return;
-    }
-
-    for (let i = idx; i < number.length; i++) {
-      backTracking(depth + 1, i, s + number[i]);
+    } else {
+      for (let i = idx; i < number.length; i++) {
+        backTracking(depth + 1, i, sum + number[i]);
+      }
     }
   }
 });
