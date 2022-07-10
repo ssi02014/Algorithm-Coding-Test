@@ -3,8 +3,7 @@ function solution(n, lost, reserve) {
     lost.sort((a, b) => a - b),
     reserve.sort((a, b) => a - b)
   );
-  getDeletedBorrowedStudent(lost, reserve).forEach((_) => n--);
-  return n;
+  return n - getDeletedBorrowedStudent(lost, reserve).length;
 }
 
 // 여유분이 있는 학생과 도난당한 학생이 동일할 때 각 배열에서 제거
