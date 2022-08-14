@@ -1,7 +1,7 @@
 function solution(fees, records) {
   const [defaultTime, defaultFee, unitTime, unitFee] = fees;
-  const stack = [];
   const last = 23 * 60 + 59;
+  const temp = [];
   let calculatedRecords = [];
 
   // 입차, 출차 시간 계산
@@ -10,31 +10,31 @@ function solution(fees, records) {
     const convertedTime = getConvertedTime(time);
 
     if (type === "IN") {
-      stack.push({ time: convertedTime, carNumber });
+      temp.push({ time: convertedTime, carNumber });
     } else {
-      const foundStackItemIdx = findIndexByCarNumber(stack, carNumber);
-      const foundCalculateRecordItemIdx = findIndexByCarNumber(
+      const foundTempItemIdx = findIndexByCarNumber(temp, carNumber);
+      const foundCalculateRecordsItemIdx = findIndexByCarNumber(
         calculatedRecords,
         carNumber
       );
-      const foundStackItemTime = stack[foundStackItemIdx].time;
+      const foundStackItemTime = temp[foundTempItemIdx].time;
 
       calculatedRecords = getAddedOrCalculatedTimeRecords(
         calculatedRecords,
         carNumber,
-        foundCalculateRecordItemIdx,
+        foundCalculateRecordsItemIdx,
         foundStackItemTime,
         convertedTime
       );
 
-      stack.splice(foundStackItemIdx, 1);
+      temp.splice(foundTempItemIdx, 1);
     }
   });
 
   // 출차 없는 자동차 마무리 계산
-  stack.forEach((item) => {
+  temp.forEach((item) => {
     const { carNumber } = item;
-    const foundCalculateRecordItemIdx = findIndexByCarNumber(
+    const foundCalculateRecordsItemIdx = findIndexByCarNumber(
       calculatedRecords,
       carNumber
     );
@@ -42,7 +42,7 @@ function solution(fees, records) {
     calculatedRecords = getAddedOrCalculatedTimeRecords(
       calculatedRecords,
       carNumber,
-      foundCalculateRecordItemIdx,
+      foundCalculateRecordsItemIdx,
       item.time,
       last
     );
@@ -79,16 +79,47 @@ function getAddedOrCalculatedTimeRecords(
   entryTime,
   exitTime
 ) {
-  const cloneArr = [...records];
+  const cloneRecords = [...records];
 
   if (findIdx !== -1) {
-    cloneArr[findIdx].time += exitTime - entryTime;
+    cloneRecords[findIdx].time += exitTime - entryTime;
   } else {
-    cloneArr.push({
+    cloneRecords.push({
       time: exitTime - entryTime,
       carNumber,
     });
   }
 
-  return cloneArr;
+  return cloneRecords;
+}
+
+// 다른 사람 풀이
+function solution2(fees, records) {
+  const [defaultTime, defaultFee, unitTime, unitFee] = fees;
+  const parkingTime = {};
+  const answer = [];
+
+  records.forEach((record) => {
+    let [time, carNumber, type] = record.split(" ");
+    let [hour, minute] = time.split(":");
+
+    time = hour * 1 * 60 + minute * 1;
+
+    if (!parkingTime[carNumber]) parkingTime[carNumber] = 0;
+
+    if (type === "IN") parkingTime[carNumber] += 1439 - time;
+    else parkingTime[carNumber] -= 1439 - time;
+  });
+
+  for (const entry of Object.entries(parkingTime)) {
+    let [car, time] = entry;
+
+    if (time <= defaultTime) time = defaultFee;
+    else {
+      time = Math.ceil((time - defaultTime) / unitTime) * unitFee + defaultFee;
+    }
+
+    answer.push([car, time]);
+  }
+  return answer.sort((a, b) => a[0] - b[0]).map((v) => v[1]);
 }
