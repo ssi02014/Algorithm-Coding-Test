@@ -1,69 +1,68 @@
-const readline = require("readline"); 
-const rl = readline.createInterface({ 
-    input: process.stdin, 
-    output: process.stdout, 
-}); 
+const readline = require("readline");
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout,
+});
 
 const input = [];
-
-const whiteStart = [
-    'WBWBWBWB',
-    'BWBWBWBW',
-    'WBWBWBWB',
-    'BWBWBWBW',
-    'WBWBWBWB',
-    'BWBWBWBW',
-    'WBWBWBWB',
-    'BWBWBWBW',
+const whiteStartBoard = [
+  "WBWBWBWB",
+  "BWBWBWBW",
+  "WBWBWBWB",
+  "BWBWBWBW",
+  "WBWBWBWB",
+  "BWBWBWBW",
+  "WBWBWBWB",
+  "BWBWBWBW",
 ];
 
-const blackStart = [
-    'BWBWBWBW',
-    'WBWBWBWB',
-    'BWBWBWBW',
-    'WBWBWBWB',
-    'BWBWBWBW',
-    'WBWBWBWB',
-    'BWBWBWBW',
-    'WBWBWBWB',
+const blackStartBoard = [
+  "BWBWBWBW",
+  "WBWBWBWB",
+  "BWBWBWBW",
+  "WBWBWBWB",
+  "BWBWBWBW",
+  "WBWBWBWB",
+  "BWBWBWBW",
+  "WBWBWBWB",
 ];
-
-
-function whiteFirstPaint(chess, y, x) {
-    let count = 0;
-    
-    for(let i = y; i < y + 8; i++) {
-        for(let j = x; j < x + 8; j++) {
-            if(chess[i][j] !== whiteStart[i - y][j - x]) count++;
-        }
-    }
-    return count;
-}
-
-function blackFirstPaint(chess, y, x) {
-    let count = 0;
-
-    for(let i = y; i < y + 8; i++) {
-        for(let j = x; j < x + 8; j++) {
-            if(chess[i][j] !== blackStart[i - y][j - x]) count++;
-        }
-    }
-    return count;
-}
 
 rl.on("line", function (line) {
-    input.push(line); 
-}).on("close", function () { 
-    const [N, M] = input.shift().split(" ").map(Number);
-    const chess = input.splice(0);
-    const minArr = [];
+  input.push(line);
+}).on("close", function () {
+  const [N, M] = input[0].split(" ").map(Number);
+  const chessBoard = getChessBoardByInput();
+  let result = Number.MAX_SAFE_INTEGER;
 
-    for(let i = 0; i + 7 < N; i++) {
-        for(let j = 0; j + 7 < M; j++) {
-            minArr.push(whiteFirstPaint(chess, i, j));
-            minArr.push(blackFirstPaint(chess, i, j));
-        }
+  for (let i = 0; i < N - 7; i++) {
+    for (let j = 0; j < M - 7; j++) {
+      result = Math.min(result, checkChessBoard(chessBoard, "black", i, j));
+      result = Math.min(result, checkChessBoard(chessBoard, "white", i, j));
     }
-    
-    console.log(Math.min(...minArr));
-}); 
+  }
+
+  console.log(result); // 출력
+
+  function getChessBoardByInput() {
+    const board = [];
+    for (let i = 1; i < input.length; i++) {
+      board[i - 1] = input[i];
+    }
+    return board;
+  }
+
+  function checkChessBoard(chessBoard, checkBoardType, x, y) {
+    const checkBoard =
+      checkBoardType === "black" ? blackStartBoard : whiteStartBoard;
+    let count = 0;
+
+    for (let i = x; i < x + 8; i++) {
+      for (let j = y; j < y + 8; j++) {
+        if (chessBoard[i][j] !== checkBoard[i - x][j - y]) {
+          count++;
+        }
+      }
+    }
+    return count;
+  }
+});
