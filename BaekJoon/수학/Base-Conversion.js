@@ -12,15 +12,15 @@ rl.on("line", function (line) {
   const [future, current] = input[0].split(" ").map(Number);
   const numbers = input[2].split(" ").map(Number);
   const result = [];
-  let tenResult = 0;
+  let decimal = 0;
 
   numbers.forEach((number, idx) => {
-    tenResult += number * Math.pow(future, numbers.length - idx - 1);
+    decimal += number * Math.pow(future, numbers.length - idx - 1);
   });
 
-  while (tenResult) {
-    result.push(tenResult % current);
-    tenResult = Math.floor(tenResult / current);
+  while (decimal) {
+    result.push(decimal % current);
+    decimal = Math.floor(decimal / current);
   }
 
   console.log(result.reverse().join(" "));
