@@ -1,5 +1,6 @@
 // 풀이1 O(N^3)
 function solution(msg) {
+  const result = [];
   const dict = [
     "A",
     "B",
@@ -29,8 +30,6 @@ function solution(msg) {
     "Z",
   ];
 
-  const result = [];
-
   for (let i = 0; i <= msg.length; i++) {
     let cur = msg[i];
 
@@ -49,7 +48,7 @@ function solution(msg) {
       }
     }
   }
-  console.log(result);
+  return result;
 }
 
 // 풀이2
