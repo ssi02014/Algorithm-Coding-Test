@@ -37,15 +37,13 @@ function solution(msg) {
       const curIdx = dict.indexOf(cur);
       const nextIdx = dict.indexOf(cur + msg[j]);
 
-      if (curIdx !== -1) {
-        if (nextIdx === -1) {
-          dict.push(cur + msg[j]);
-          result.push(curIdx + 1);
-          break;
-        }
-        cur += msg[j];
-        i++;
+      if (nextIdx === -1) {
+        dict.push(cur + msg[j]);
+        result.push(curIdx + 1);
+        break;
       }
+      cur += msg[j];
+      i++;
     }
   }
   return result;
