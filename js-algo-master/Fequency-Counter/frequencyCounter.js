@@ -9,10 +9,8 @@ function solution(arr1, arr2) {
   }
 
   for (const el of arr2) {
-    if (!(el in obj)) return false;
-    else obj[el]--;
-
-    if (obj[el] < 0) return false;
+    if (!obj[el]) return false;
+    obj[el]--;
   }
 
   return true;
