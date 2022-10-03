@@ -1,3 +1,4 @@
+// O(N)
 function solution(str1, str2) {
   const obj = {};
 
