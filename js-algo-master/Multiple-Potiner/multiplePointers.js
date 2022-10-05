@@ -1,4 +1,4 @@
-// 시간 복잡도 O(N), 공간 복잡도O(1)
+// 시간 복잡도 O(N), 공간 복잡도 O(1)
 function solution(arr) {
   let [start, end] = [0, arr.length - 1];
 
@@ -18,6 +18,17 @@ console.log(solution([-4, -3, -2, -1, 0, 1, 5, 10])); // [-1, 1]
 console.log(solution([5, 1, -2, 3, 0, 4, -5, 10])); // [-5, 5]
 console.log(solution([-2, 0, 1, 3])); // undefined
 console.log(solution([1, 2, 3])); // undefined
+
+// 시간 복잡도 O(N^2)
+function naiveSolution(arr) {
+  for (let i = 0; i < arr.length; i++) {
+    for (let j = i + 1; j < arr.length; j++) {
+      if (arr[i] + arr[j] === 0) {
+        return [arr[i], arr[j]];
+      }
+    }
+  }
+}
 
 /* 
   solution([-3, -2, -1, 0, 1, 2, 3]) // [-3, 3]
