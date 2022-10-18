@@ -3,6 +3,6 @@ function solution(id_pw, db) {
   const filteredId = db.filter((data) => data[0] === id)[0];
 
   if (!filteredId) return "fail";
-  if (filteredId[1] !== pw) return "wrong pw";
+  else if (filteredId[1] !== pw) return "wrong pw";
   return "login";
 }
