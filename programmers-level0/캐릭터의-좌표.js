@@ -8,21 +8,21 @@ function solution(keyinput, board) {
   };
 
   keyinput.forEach((input) => {
-    const [y, x] = result;
-    const [dy, dx] = moves[input];
+    const [x, y] = result;
+    const [moveX, moveY] = moves[input];
 
-    if (isValid(y + dy, x + dx, board)) {
-      result[0] += dy;
-      result[1] += dx;
+    if (isValid(x + moveX, y + moveY, board)) {
+      result[0] += moveX;
+      result[1] += moveY;
     }
   });
   return result;
 }
 
-function isValid(y, x, board) {
-  const [maxY, maxX] = board;
-  const halfY = Math.floor(maxY / 2);
+function isValid(x, y, board) {
+  const [maxX, maxY] = board;
   const halfX = Math.floor(maxX / 2);
+  const halfY = Math.floor(maxY / 2);
 
   if (x < -halfX || y < -halfY || x > halfX || y > halfY) {
     return false;
