@@ -18,4 +18,4 @@ function naiveStringSearch(str, target) {
 
 console.log(naiveStringSearch("wowomgzomg", "omg")); // 2
 console.log(naiveStringSearch("lorie loled", "loled")); // 1
-console.log(naiveStringSearch("lorie loled", "pop")); // 1
+console.log(naiveStringSearch("lorie loled", "pop")); // 0
