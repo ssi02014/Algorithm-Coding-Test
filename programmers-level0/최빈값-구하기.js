@@ -9,9 +9,9 @@ function solution(array) {
 
   for (const key in board) {
     if (board[key] === max) {
-      if (result.length > 0) return -1;
       result.push(+key);
     }
   }
-  return result[0];
+
+  return result.length > 1 ? -1 : result[0];
 }
