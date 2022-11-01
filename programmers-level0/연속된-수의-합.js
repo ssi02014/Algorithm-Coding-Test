@@ -17,13 +17,11 @@ function solution1(num, total) {
     sum += add - (add + num);
   }
 
-  return arr.sort((a, b) => a - b);
+  return arr;
 }
 
 // 풀이2
-function solution2(num, total) {
-  const a = ((2 * total) / num + 1 - num) / 2;
-  return Array(num)
-    .fill()
-    .map((_, i) => i + a);
+function solution(num, total) {
+  const temp = ((2 * total) / num + 1 - num) / 2;
+  return Array.from({ length: num }, (_, i) => i + temp);
 }
