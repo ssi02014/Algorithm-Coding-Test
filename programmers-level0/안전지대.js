@@ -1,18 +1,15 @@
-function solution(board) {
-  let boardSize = 0;
-  let dangerAreaCount = 0;
-
-  for (let i = 0; i < board.length; i++) {
-    boardSize += board[i].length;
-
-    for (let j = 0; j < board[i].length; j++) {
-      if (board[i][j] === 1) {
-        dangerAreaCount = changeDangerArea(++dangerAreaCount, board, i, j);
-      }
-    }
+function isValid(board, x, y) {
+  if (
+    x < 0 ||
+    y < 0 ||
+    x > board.length - 1 ||
+    y > board.length - 1 ||
+    board[x][y] === 1 ||
+    board[x][y] === 2
+  ) {
+    return false;
   }
-
-  return boardSize - dangerAreaCount;
+  return true;
 }
 
 function changeDangerArea(dangerAreaCount, board, x, y) {
@@ -31,32 +28,19 @@ function changeDangerArea(dangerAreaCount, board, x, y) {
   return dangerAreaCount;
 }
 
-function isValid(board, x, y) {
-  if (
-    x < 0 ||
-    y < 0 ||
-    x > board.length - 1 ||
-    y > board.length - 1 ||
-    board[x][y] === 1 ||
-    board[x][y] === 2
-  ) {
-    return false;
+function solution(board) {
+  let boardSize = 0;
+  let dangerAreaCount = 0;
+
+  for (let i = 0; i < board.length; i++) {
+    boardSize += board[i].length;
+
+    for (let j = 0; j < board[i].length; j++) {
+      if (board[i][j] === 1) {
+        dangerAreaCount = changeDangerArea(++dangerAreaCount, board, i, j);
+      }
+    }
   }
-  return true;
+
+  return boardSize - dangerAreaCount;
 }
-
-/*
-0 0 0 0 0
-0 0 0 0 0
-0 0 0 0 0
-0 0 1 0 0
-0 0 0 0 0
-= 16
-
-0 0 0 0 0
-0 0 0 0 0
-0 0 0 0 0
-0 0 1 1 0
-0 0 0 0 0
-= 13
-*/
