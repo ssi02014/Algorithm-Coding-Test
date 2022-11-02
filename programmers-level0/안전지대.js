@@ -1,4 +1,5 @@
 // solution1
+// 위험 구역을 카운팅 후 board 전체 사이즈에서 뺌
 function isValid(board, x, y) {
   if (
     x < 0 ||
@@ -47,6 +48,7 @@ function solution(board) {
 }
 
 // solution2
+// 안전 지역을 걸러내서 이를 카운팅!
 function isValid(board, x, y) {
   if (x < 0 || y < 0 || x > board.length - 1 || y > board.length - 1) {
     return false;
