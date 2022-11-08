@@ -9,20 +9,19 @@ const input = [];
 rl.on("line", function (line) {
   input.push(line);
 }).on("close", function () {
-  let [N, K] = input.shift().split(" ").map(Number);
-  let coinList = input.slice(0).map(Number);
-
-  let availableCoin = [];
+  const availableCoin = [];
+  const coinList = input.slice(1).map(Number);
+  let [N, K] = input[0].split(" ").map(Number);
   let count = 0;
 
   for (let i = 0; i < N; i++) {
-    if (coinList[i] < K) availableCoin.push(coinList[i]);
+    if (coinList[i] <= K) availableCoin.push(coinList[i]);
   }
 
-  availableCoin = availableCoin.sort((a, b) => b - a);
+  availableCoin.sort((a, b) => b - a);
 
-  for (let coin of availableCoin) {
-    count += parseInt(K / coin);
+  for (const coin of availableCoin) {
+    count += Math.floor(K / coin);
     K = K % coin;
   }
   console.log(count);
