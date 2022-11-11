@@ -1,22 +1,8 @@
 function solution(babbling) {
-  const pronunciations = ["aya", "ye", "woo", "ma"];
-  let result = 0;
+  return babbling.reduce((acc, cur) => {
+    const regex = /aya|ye|woo|ma/g;
+    const replacedBabbling = cur.replace(regex, "");
 
-  babbling.forEach((el) => {
-    let curStr = el;
-
-    pronunciations.forEach((pronunciation) => {
-      curStr = curStr.replace(pronunciation + pronunciation, "z");
-    });
-
-    pronunciations.forEach((pronunciation) => {
-      while (curStr.includes(pronunciation)) {
-        curStr = curStr.replace(pronunciation, "");
-      }
-    });
-
-    if (!curStr.length) result++;
-  });
-
-  return result;
+    return replacedBabbling === "" ? acc + 1 : acc;
+  }, 0);
 }
