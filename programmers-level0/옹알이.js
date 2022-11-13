@@ -3,6 +3,6 @@ function solution(babbling) {
     const regex = /aya|ye|woo|ma/g;
     const replacedBabbling = cur.replace(regex, "");
 
-    return replacedBabbling === "" ? acc + 1 : acc;
+    return !replacedBabbling ? acc + 1 : acc;
   }, 0);
 }
