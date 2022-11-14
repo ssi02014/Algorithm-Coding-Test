@@ -9,7 +9,7 @@ function solution(food) {
     const numberOfFood = foodCounts.length - i;
 
     while (cur) {
-      acc = `${numberOfFood}${acc}${numberOfFood}`;
+      acc = numberOfFood + acc + numberOfFood;
       cur -= 2;
     }
 
