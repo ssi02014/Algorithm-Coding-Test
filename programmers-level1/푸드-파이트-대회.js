@@ -1,22 +1,3 @@
-// function solution(food) {
-//   const validFoods = food
-//     .slice(1)
-//     .reverse()
-//     .map((el) => el - (el % 2));
-//   let result = [0];
-
-//   for (let i = 0; i < validFoods.length; i++) {
-//     while (validFoods[i]) {
-//       const numberOfFood = validFoods.length - i;
-
-//       result = [numberOfFood, ...result, numberOfFood];
-//       validFoods[i] -= 2;
-//     }
-//   }
-
-//   return result.join("");
-// }
-
 // 리팩토링
 function solution(food) {
   const foodCounts = food
@@ -39,4 +20,17 @@ function solution(food) {
   );
 
   return result.join("");
+}
+
+// repeat풀이
+function solution(food) {
+  const leftSide = [];
+
+  for (let i = 1; i < food.length; i++) {
+    const count = Math.floor(food[i] / 2);
+
+    leftSide.push(String(i).repeat(count));
+  }
+
+  return `${leftSide.join("")}0${leftSide.reverse().join("")}`;
 }
