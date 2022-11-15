@@ -17,5 +17,5 @@ function solution(X, Y) {
 
   if (!commons.length) return "-1";
   else if (commons[0] === "0") return "0";
-  return commons.reduce((acc, cur) => acc + cur, "");
+  return commons.join("");
 }
