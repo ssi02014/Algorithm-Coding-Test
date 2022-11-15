@@ -2,7 +2,7 @@ function solution(ingredient) {
   const stack = [];
 
   return ingredient.reduce((acc, cur) => {
-    stack.push(`${cur}`);
+    stack.push(cur);
 
     if (isHamburger(stack)) {
       stack.splice(-4);
@@ -13,9 +13,8 @@ function solution(ingredient) {
 }
 
 function isHamburger(stack) {
-  const lastElement = [4, 3, 2, 1].reduce(
-    (acc, cur) => (acc += stack[stack.length - cur]),
-    ""
-  );
-  return lastElement === "1231";
+  const stackLength = stack.length;
+  const hamburger = stack.slice(stackLength - 4, stackLength).join("");
+
+  return hamburger === "1231";
 }
