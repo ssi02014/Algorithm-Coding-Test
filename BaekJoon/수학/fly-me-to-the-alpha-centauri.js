@@ -17,8 +17,8 @@ rl.on("line", function (line) {
     const [x, y] = move;
     const moveLength = y - x;
     const sqrt = Math.sqrt(moveLength);
-    const isSquare = moveLength % sqrt === 0;
-    let count = isSquare ? sqrt * 2 - 1 : sqrt * 2;
+    const isPerfectSquare = moveLength % sqrt === 0;
+    let count = isPerfectSquare ? sqrt * 2 - 1 : sqrt * 2;
 
     if (sqrt * (sqrt + 1) < moveLength) count++;
 
