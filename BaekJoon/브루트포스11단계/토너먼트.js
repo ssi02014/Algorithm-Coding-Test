@@ -27,15 +27,10 @@ rl.on("line", function (line) {
   };
 
   while (tournament.length > 1) {
-    const tempArr = [];
     const halfTournamentLength = Math.round(tournament.length / 2);
 
     for (let i = 0; i <= tournament.length; i += 2) {
       if (isBattle(i, i + 1)) return console.log(result);
-    }
-
-    for (let i = 1; i <= halfTournamentLength; i++) {
-      tempArr.push(i);
     }
 
     result++;
@@ -60,17 +55,13 @@ rl.on("line", function (line) {
 // rl.on("line", function (line) {
 //   input.push(line);
 // }).on("close", function () {
-//   let [x, y] = input[0]
-//     .split(" ")
-//     .map(Number)
-//     .sort((a, b) => a - b);
-//   let result = 1;
+//   let [t, kim, lim] = input[0].split(" ").map(Number);
+//   let result = 0;
 
-//   while (true) {
-//     if (y - x === 1 && y % 2 === 0) break;
+//   while (kim !== lim) {
+//     kim -= Math.floor(kim / 2);
+//     lim -= Math.floor(lim / 2);
 
-//     x = Math.ceil(x / 2);
-//     y = Math.ceil(y / 2);
 //     result++;
 //   }
 
