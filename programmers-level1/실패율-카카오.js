@@ -1,23 +1,16 @@
 function solution(N, stages) {
-  const result = [];
-
-  let failRatio = 0;
-  let stageNum = 0;
+  const rates = [];
   let stagesLength = stages.length;
 
   for (let i = 1; i <= N; i++) {
-    stageNum = stages.filter((el) => el === i).length;
+    const unclearCounts = stages.filter((stage) => stage === i).length;
+    const rate = unclearCounts / stagesLength;
 
-    if (stageNum === 0) failRatio = 0;
-    else failRatio = stageNum / stagesLength;
-
-    stagesLength -= stageNum;
-    result.push({ stage: i, ratio: failRatio });
+    rates.push([i, rate]);
+    stagesLength -= unclearCounts;
   }
 
-  result.sort((a, b) =>
-    a.ratio === b.ratio ? a.stage - b.stage : b.ratio - a.ratio
-  );
-
-  return result.map((el) => el.stage);
+  return rates
+    .sort((a, b) => b[1] - a[1] || a[0] - b[0])
+    .map(([stage, rate]) => stage);
 }
