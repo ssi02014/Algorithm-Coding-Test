@@ -1,53 +1,17 @@
+function getBinaryMap(arr, n) {
+  return arr.map((el) => el.toString(2).padStart(n, "0").split(""));
+}
+
 function solution(n, arr1, arr2) {
-  const mapOne = [];
-  const mapTwo = [];
-  const integrateMap = [];
-  const result = [];
+  const map1 = getBinaryMap(arr1, n);
+  const map2 = getBinaryMap(arr2, n);
 
-  let temp = [];
-  let binaryNum = [];
-
-  arr1.map((el) => {
-    binaryNum = el.toString(2).split("");
-
-    while (binaryNum.length !== n) {
-      binaryNum.unshift("0");
-    }
-
-    mapOne.push(binaryNum);
+  return map1.map((row, i) => {
+    return row.reduce((acc, cur, j) => {
+      if (cur === "1" || map2[i][j] === "1") {
+        return acc + "#";
+      }
+      return acc + " ";
+    }, "");
   });
-
-  arr2.map((el) => {
-    binaryNum = el.toString(2).split("");
-
-    while (binaryNum.length !== n) {
-      binaryNum.unshift("0");
-    }
-
-    mapTwo.push(binaryNum);
-  });
-
-  for (let i = 0; i < mapOne.length; i++) {
-    temp = [];
-
-    for (let j = 0; j < mapOne[i].length; j++) {
-      if (mapOne[i][j] === mapTwo[i][j]) temp.push(mapOne[i][j]);
-      else temp.push("1");
-    }
-
-    integrateMap.push(temp);
-  }
-
-  integrateMap.map((el) => {
-    temp = [];
-
-    el.map((ele) => {
-      if (ele === "1") temp.push("#");
-      else temp.push(" ");
-    });
-
-    result.push(temp.join(""));
-  });
-
-  return result;
 }
