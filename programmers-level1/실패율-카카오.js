@@ -12,5 +12,5 @@ function solution(N, stages) {
 
   return rates
     .sort((a, b) => b[1] - a[1] || a[0] - b[0])
-    .map(([stage, rate]) => stage);
+    .map((rate) => rate[0]);
 }
