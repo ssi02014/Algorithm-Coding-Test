@@ -9,25 +9,23 @@ const input = [];
 rl.on("line", function (line) {
   input.push(line);
 }).on("close", function () {
-  const n = input.slice(0, input.length - 1);
-  const result = [];
+  let result = "";
 
-  for (let i = 0; i < n.length; i++) {
-    let temp = true;
+  for (let i = 0; i < input.length - 1; i++) {
+    const mid = Math.floor(input[i].length / 2);
+    let isPalindrome = true;
 
-    for (let j = 0; j < Math.floor(n[i].length / 2); j++) {
-      const start = n[i][j];
-      const end = n[i][n[i].length - j - 1];
+    for (let j = 0; j < mid; j++) {
+      const start = input[i][j];
+      const end = input[i][input[i].length - j - 1];
 
       if (start !== end) {
-        temp = false;
-        result.push("no");
+        isPalindrome = false;
+        result += `no\n`;
         break;
       }
     }
-
-    if (temp) result.push("yes");
+    isPalindrome && (result += `yes\n`);
   }
-
-  console.log(result.join("\n"));
+  console.log(result);
 });
