@@ -19,3 +19,6 @@ rl.on("line", function (line) {
   }
   console.log(arr[0][0]);
 });
+
+// 아래층부터 arr[i-1][j]에 arr[i][j]와 arr[i][j+1]중 큰 수를 계속 누적한다.
+// 그러면 최종적으로 arr[0][0]이 합의 최대값이 나오게 된다.
