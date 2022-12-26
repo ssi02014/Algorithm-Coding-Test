@@ -24,3 +24,8 @@ rl.on("line", function (line) {
   const [a, b, c] = input[0].split(" ").map(BigInt);
   console.log(Number(recursive(a, b, c)));
 });
+
+/**
+ * 지수 법칙: a^(n+m) = a^n * a^m
+ * 모듈러 성질 : (a*b)%c = (a%c * b%c)%c
+ */
