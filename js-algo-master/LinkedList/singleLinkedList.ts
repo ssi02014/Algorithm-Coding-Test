@@ -34,10 +34,42 @@ class SingleLinkedList {
     this.length += 1;
     return this;
   }
+
+  public pop() {
+    if (!this.head) return undefined;
+
+    let current = this.head;
+    let newTail = current;
+
+    while (current.next) {
+      newTail = current;
+      current = current.next;
+    }
+
+    // current는 기존 tail Node를 바라봄
+    // newTail은 기존 tail Node의 바로 이전 Node를 바라봄
+    this.tail = newTail;
+    this.tail.next = null;
+    this.length -= 1;
+
+    // this.length가 0이되면 head와 tail을 null로 할당
+    if (!this.length) {
+      this.head = null;
+      this.tail = null;
+    }
+
+    // 제거 된 기존 tail Node를 리턴, 배열 메서드의 pop도 제거된 요소를 반환 함
+    return current;
+  }
 }
 
 const linkedList = new SingleLinkedList();
 linkedList.push("Hello");
 linkedList.push("GoodBye");
+linkedList.push("!!");
 
+linkedList.pop();
+linkedList.pop();
+linkedList.pop();
+linkedList.pop();
 console.log(linkedList);

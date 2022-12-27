@@ -9,7 +9,6 @@ function solution(arr, val) {
     const mid = Math.floor((min + max) / 2);
     const cur = arr[mid];
 
-    console.log(arr[min], arr[mid], arr[max]);
     if (cur < val) {
       min = mid + 1;
     } else if (cur > val) {
