@@ -12,7 +12,7 @@ rl.on("line", function (line) {
 }).on("close", function () {
   const [n, k] = input[0].split(" ").map(Number);
   const visited = Array(100001).fill(false);
-  const getMoves = (curNode) => [curNode + 1, , curNode - 1, curNode * 2];
+  const getMoves = (curNode) => [curNode + 1, curNode - 1, curNode * 2];
 
   const checkRange = (move) => {
     if (move < 0 || move > 100000) {
@@ -30,6 +30,7 @@ rl.on("line", function (line) {
 
     while (queue.length) {
       const [curNode, time] = queue.shift();
+
       if (curNode === k) return time; // 중단점
 
       for (const nextMove of getMoves(curNode)) {
