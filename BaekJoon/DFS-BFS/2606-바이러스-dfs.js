@@ -29,7 +29,7 @@ rl.on("line", function (line) {
     visited[startNode] = true;
     result++;
 
-    graph[startNode].map((node) => {
+    graph[startNode].forEach((node) => {
       if (!visited[node]) {
         dfs(node);
       }
