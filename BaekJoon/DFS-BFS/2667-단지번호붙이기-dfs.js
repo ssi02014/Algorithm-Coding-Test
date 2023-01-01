@@ -41,22 +41,18 @@ rl.on("line", function (line) {
     });
   };
 
-  const solution = () => {
-    for (let i = 0; i < n; i++) {
-      for (let j = 0; j < n; j++) {
-        if (map[i][j] === 1) {
-          dfs(i, j, 1);
+  for (let i = 0; i < n; i++) {
+    for (let j = 0; j < n; j++) {
+      if (map[i][j] === 1) {
+        dfs(i, j, 1);
 
-          result.push(count);
-          count = 0;
-        }
+        result.push(count);
+        count = 0;
       }
     }
-    result.sort((a, b) => a - b);
+  }
+  result.sort((a, b) => a - b);
 
-    console.log(result.length);
-    console.log(result.join("\n"));
-  };
-
-  solution();
+  console.log(result.length);
+  console.log(result.join("\n"));
 });
