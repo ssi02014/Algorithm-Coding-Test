@@ -9,7 +9,7 @@ const input = [];
 rl.on("line", function (line) {
   input.push(line);
 }).on("close", function () {
-  let n = parseInt(input[0]);
+  let n = +input[0];
   let count = 0;
 
   while (true) {
