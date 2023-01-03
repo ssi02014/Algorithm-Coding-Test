@@ -31,9 +31,7 @@ rl.on("line", function (line) {
   };
 
   const bfs = (map, x, y) => {
-    const queue = [];
-
-    queue.push([x, y]);
+    const queue = [[x, y]];
 
     while (queue.length) {
       const [curX, curY] = queue.shift();
