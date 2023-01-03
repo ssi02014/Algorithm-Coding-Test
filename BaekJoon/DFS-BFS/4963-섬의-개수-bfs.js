@@ -36,7 +36,7 @@ rl.on("line", function (line) {
     while (queue.length) {
       const [curX, curY] = queue.shift();
 
-      if (rangeCheck(map, curX, curY) && map[curX][curY] === 1) {
+      if (rangeCheck(map, curX, curY) && map[curX][curY]) {
         map[curX][curY] = 0;
 
         moves.forEach(([dx, dy]) => {
@@ -58,7 +58,7 @@ rl.on("line", function (line) {
 
     for (let j = 0; j < h; j++) {
       for (let k = 0; k < w; k++) {
-        if (map[j][k] === 1) {
+        if (map[j][k]) {
           bfs(map, j, k);
           count++;
         }
