@@ -3,7 +3,7 @@ function solution(N, road, K) {
   const graph = Array.from({ length: N + 1 }, () => []);
   let result = 0;
 
-  const bfs = (startNode, startDist) => {
+  const dijkstra = (startNode, startDist) => {
     const queue = [[startNode, startDist]];
 
     while (queue.length) {
@@ -26,7 +26,7 @@ function solution(N, road, K) {
   });
 
   distList[1] = 0;
-  bfs(1, 0);
+  dijkstra(1, 0);
 
   distList.forEach((dist) => dist <= K && result++);
 
