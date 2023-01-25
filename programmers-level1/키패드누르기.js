@@ -5,7 +5,6 @@ function solution(numbers, hand) {
     [7, 8, 9],
     ["*", 0, "#"],
   ];
-  const [keypadHeight, keypadWidth] = [keypad.length, keypad[0].length];
   const fixedHandTypeObj = {
     1: "left",
     4: "left",
@@ -23,8 +22,8 @@ function solution(numbers, hand) {
 
   // 누른 버튼의 위치 GET
   const getPressedNumberPosition = (number) => {
-    for (let i = 0; i < keypadHeight; i++) {
-      for (let j = 0; j < keypadWidth; j++) {
+    for (let i = 0; i < keypad.length; i++) {
+      for (let j = 0; j < keypad[0].length; j++) {
         if (keypad[i][j] === number) {
           return [i, j];
         }
@@ -33,14 +32,14 @@ function solution(numbers, hand) {
   };
 
   // 현재 손가락과 버튼과의 거리 GET
-  const getDiffDistance = (position1, position2) => {
+  const getDistance = (position1, position2) => {
     return (
       Math.abs(position1[0] - position2[0]) +
       Math.abs(position1[1] - position2[1])
     );
   };
 
-  const onChangeHandPosition = {
+  const changeHandPositionByType = {
     left: (position) => {
       leftHand = position;
       return "L";
@@ -56,16 +55,16 @@ function solution(numbers, hand) {
     let handType = fixedHandTypeObj[number];
 
     if (!handType) {
-      const leftDist = getDiffDistance(leftHand, pressedNumPosition);
-      const rightDist = getDiffDistance(rightHand, pressedNumPosition);
+      const leftDistance = getDistance(leftHand, pressedNumPosition);
+      const rightDistance = getDistance(rightHand, pressedNumPosition);
 
-      if (leftDist === rightDist) {
+      if (leftDistance === rightDistance) {
         handType = hand;
       } else {
-        handType = leftDist < rightDist ? "left" : "right";
+        handType = leftDistance < rightDistance ? "left" : "right";
       }
     }
-    return onChangeHandPosition[handType](pressedNumPosition);
+    return changeHandPositionByType[handType](pressedNumPosition);
   });
 
   return result.join("");
