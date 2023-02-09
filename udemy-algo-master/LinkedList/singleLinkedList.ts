@@ -1,16 +1,8 @@
-class NodeItem {
-  public val: any;
-  public next: NodeItem;
-
-  constructor(val: any) {
-    this.val = val;
-    this.next = null;
-  }
-}
+import Node from "../Node/node.js";
 
 class SingleLinkedList {
-  private head: NodeItem;
-  private tail: NodeItem;
+  private head: Node;
+  private tail: Node;
   public length: number;
 
   constructor() {
@@ -21,7 +13,7 @@ class SingleLinkedList {
 
   public push(val: any) {
     // newNode 생성
-    const newNode = new NodeItem(val);
+    const newNode = new Node(val);
 
     if (!this.head) {
       // 최초 노드 삽입, head, tail 모두 newNode를 가리킴
@@ -85,7 +77,7 @@ class SingleLinkedList {
   }
 
   public unshift(val: any) {
-    const newNode = new NodeItem(val);
+    const newNode = new Node(val);
 
     if (!this.head) {
       this.head = newNode;
@@ -99,15 +91,66 @@ class SingleLinkedList {
     return this;
   }
 
+  public get(index: number) {
+    if (index < 0 || index >= this.length) return null;
+    let counter = 0;
+    let current = this.head;
+
+    while (counter !== index) {
+      current = current.next;
+      counter++;
+    }
+    return current;
+  }
+
+  public set(index: number, val: any) {
+    const foundNode = this.get(index);
+
+    if (foundNode) {
+      foundNode.val = val;
+      return true;
+    }
+    return false;
+  }
+
+  /**
+   * @description 링크드리스트 특정 인덱스에 노드를 추가
+   */
+  public insert(index: number, val: any) {
+    if (index < 0 || index > this.length) return false;
+    if (index === this.length) return !!this.push(val);
+    if (index === 0) return !!this.unshift(val);
+
+    const newNode = new Node(val);
+    const prev = this.get(index - 1);
+    const temp = prev.next;
+
+    prev.next = newNode;
+    newNode.next = temp;
+
+    this.length++;
+
+    return this;
+  }
+
   public size() {
     return this.length;
   }
 }
 
+// ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡd
+// 실행
 const linkedList = new SingleLinkedList();
 linkedList.push("Hello");
 linkedList.push("GoodBye");
 linkedList.push("!!");
 
-console.log(linkedList);
-console.log(linkedList.size());
+console.log(linkedList.insert(0, "@@"));
+console.log(linkedList.insert(4, "##"));
+
+// console.log(linkedList);
+console.log(linkedList.get(0));
+console.log(linkedList.get(1));
+console.log(linkedList.get(2));
+console.log(linkedList.get(3));
+console.log(linkedList.get(4));
