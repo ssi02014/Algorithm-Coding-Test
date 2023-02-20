@@ -1,25 +1,15 @@
 function solution(s) {
-    const answer = [];
-    
-    let temp = []
-    let binaryList = s.split("");
-    
-    let [repeatCount, deleteCount] = [-1, 0];
-    
-    while (true) {
-        repeatCount++;
-        
-        if (binaryList.length === 1) break;
-        
-        binaryList.map(el => {
-            if (el !== '0') temp.push(el);
-            else deleteCount++;
-        })
+  const result = [0, 0];
 
-        binaryList = temp.length.toString(2).split("");
-        temp = [];
-    }
-    answer.push(repeatCount, deleteCount);
+  while (s.length > 1) {
+    const convertedStr = s.replace(/0/g, () => {
+      result[1]++; // 제거된 0의 개수 카운팅
+      return "";
+    });
 
-    return answer;
+    s = convertedStr.length.toString(2);
+    result[0]++; // 변환 횟수 카운팅
+  }
+
+  return result;
 }
