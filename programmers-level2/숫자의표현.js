@@ -1,23 +1,17 @@
 function solution(n) {
-    let count = 0;
-    
-    function sequentialAdd(a) {
-        let sum = 0;
-        
-        for (let i = a; i < n + 1; i++) {
-            sum += i;
+  let [i, j] = [1, 1];
+  let tempValue = 0;
+  let result = 0;
 
-            if (sum === n) {
-                count++;
-                break;
-            } 
-            if (sum > n) break;
-        }
+  while (i <= n + 1) {
+    if (tempValue < n) {
+      tempValue += i++;
+      continue;
     }
-    
-    for (let i = 1; i < n + 1; i++) {
-        sequentialAdd(i);
+    if (tempValue === n) {
+      result++;
     }
-    
-    return count;
+    tempValue -= j++;
+  }
+  return result;
 }
