@@ -42,16 +42,14 @@ rl.on("line", function (line) {
             const [nx, ny] = [i + dx, j + dy];
 
             if (isValid(board, nx, ny, r, c)) {
-              board[nx][ny] = board[nx][ny] + 1;
+              board[nx][ny] += 1;
             }
           });
         }
       }
     }
 
-    board.forEach((el) => {
-      result += el.join("") + "\n";
-    });
+    board.forEach((el) => (result += `${el.join("")}\n`));
 
     i += r;
   }
