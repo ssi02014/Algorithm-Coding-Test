@@ -1,43 +1,46 @@
 function solution(str1, str2) {
-  const strOneUpper = str1.toUpperCase();
-  const strTwoUpper = str2.toUpperCase();
+  const upperStr1 = str1.toUpperCase();
+  const upperStr2 = str2.toUpperCase();
 
-  const splitOneList = filterSplitStr(strOneUpper);
-  const splitTwoList = filterSplitStr(strTwoUpper);
+  const getMultipleSet = (str) => {
+    const arr = str.split("");
+    const regex = /[A-Z]{2}/gi;
+    const result = [];
 
-  const union = [];
-  const intersection = [];
+    for (let i = 0; i < arr.length; i++) {
+      const tempStr = arr[i] + arr[i + 1];
+      const isMatch = tempStr.match(regex);
 
-  splitTwoList.map((el, i) => {
-    if (splitOneList.includes(el)) {
-      intersection.push(splitOneList.splice(splitOneList.indexOf(el), 1));
+      if (isMatch) result.push(tempStr);
     }
-    union.push(el);
-  });
+    return result;
+  };
 
-  splitOneList.map((el) => union.push(el));
+  const getUnionAndIntersection = (set1, set2) => {
+    const union = [];
+    const intersection = [];
+
+    set2.forEach((el) => {
+      const idx = set1.indexOf(el);
+
+      if (idx !== -1) {
+        intersection.push(set1.splice(idx, 1));
+      }
+      union.push(el);
+    });
+    set1.forEach((el) => union.push(el));
+
+    return [union, intersection];
+  };
+
+  const multipleSet1 = getMultipleSet(upperStr1);
+  const multipleSet2 = getMultipleSet(upperStr2);
+  const [union, intersection] = getUnionAndIntersection(
+    multipleSet1,
+    multipleSet2
+  );
 
   if (!union.length) return 65536;
-  else if (!intersection.length) return 0;
+  if (!intersection.length) return 0;
   return Math.floor((intersection.length / union.length) * 65536);
-}
-
-function filterSplitStr(str) {
-  const list = [];
-
-  for (let i = 0; i < str.length; i++) {
-    let temp = "";
-    let match = [];
-
-    for (let j = i + 1; j <= i + 1; j++) {
-      if (!str[j]) break;
-      temp += str[i] + str[j];
-    }
-
-    match = temp.match(/[A-Z]{2}/gi);
-
-    if (match) list.push(match.join(""));
-  }
-
-  return list.sort();
 }
