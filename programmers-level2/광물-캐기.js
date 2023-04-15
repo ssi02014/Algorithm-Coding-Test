@@ -42,8 +42,8 @@ function solution(picks, minerals) {
       while (count < NUMBER_OF_USES) {
         if (count + curMineralIdx >= minerals.length) break;
 
-        const pickAxe = pickaxeCostObj[i];
-        const nextMineral = minerals[count + curMineralIdx];
+        const pickAxe = pickaxeCostObj[i]; // 선택한 도끼
+        const nextMineral = minerals[count + curMineralIdx]; // 캐는 미네랄
 
         curCost += pickAxe[nextMineral];
         count++;
