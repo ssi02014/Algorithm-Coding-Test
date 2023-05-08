@@ -1,26 +1,36 @@
 function solution(dirs) {
-  const check = new Set();
-  const moves = dirs.split("");
-  const moveTypes = ["L", "R", "U", "D"];
-  const dx = [-1, 1, 0, 0];
-  const dy = [0, 0, 1, -1];
+  const MAX_LENGTH = 5;
+  const MIN_LENGTH = -MAX_LENGTH;
 
-  let now = [0, 0];
+  const checkSet = new Set();
+  const moveByType = {
+    L: [-1, 0],
+    R: [1, 0],
+    U: [0, 1],
+    D: [0, -1],
+  };
+  let curPosition = [0, 0];
 
-  for (let move of moves) {
-    for (let i = 0; i < moveTypes.length; i++) {
-      if (move === moveTypes[i]) {
-        let nx = now[0] + dx[i];
-        let ny = now[1] + dy[i];
+  const getIsValid = (x, y) => {
+    if (x < MIN_LENGTH || y < MIN_LENGTH || x > MAX_LENGTH || y > MAX_LENGTH) {
+      return false;
+    }
+    return true;
+  };
 
-        if (nx < -5 || ny < -5 || nx > 5 || ny > 5) continue;
-        else {
-          check.add(`${now[0]}${now[1]}${nx}${ny}`);
-          check.add(`${nx}${ny}${now[0]}${now[1]}`);
-          now = [nx, ny];
-        }
-      }
+  for (const dir of dirs) {
+    const [dx, dy] = moveByType[dir];
+    const [curX, curY] = curPosition;
+    const [nx, ny] = [curX + dx, curY + dy];
+
+    if (getIsValid(nx, ny)) {
+      curPosition = [nx, ny];
+
+      // 양방향 저장 [0, 0] -> [1, 0] 과 [1, 0] -> [0, 0] 둘은 같은 지나간 길임
+      checkSet.add(`${curX}${curY}${nx}${ny}`);
+      checkSet.add(`${nx}${ny}${curX}${curY}`);
     }
   }
-  return check.size / 2;
+
+  return checkSet.size / 2;
 }
