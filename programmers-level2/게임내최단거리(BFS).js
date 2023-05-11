@@ -1,40 +1,45 @@
 function solution(maps) {
-  const start = [0, 0, 1];
-  const dx = [-1, 1, 0, 0];
-  const dy = [0, 0, 1, -1];
-  const queue = [];
-
-  let [x, y, cnt] = [0, 0, 0];
-  let [nx, ny] = [0, 0];
+  const HEIGHT = maps.length;
+  const WIDTH = maps[0].length;
+  const moves = [
+    [1, 0],
+    [0, 1],
+    [-1, 0],
+    [0, -1],
+  ];
   let result = -1;
 
-  queue.push(start);
-
-  while (queue.length !== 0) {
-    y = queue[0][0];
-    x = queue[0][1];
-    cnt = queue[0][2];
-
-    queue.shift();
-
-    if (x === maps[0].length - 1 && y === maps.length - 1) {
-      result = cnt;
-      break;
+  const getIsValid = (y, x) => {
+    if (x < 0 || y < 0 || x >= WIDTH || y >= HEIGHT || !maps[y][x]) {
+      return false;
     }
+    return true;
+  };
 
-    for (let i = 0; i < dx.length; i++) {
-      nx = x + dx[i];
-      ny = y + dy[i];
+  const bfs = (start, end) => {
+    const queue = [[start, end, 1]];
 
-      if (nx < 0 || ny < 0 || nx >= maps[0].length || ny >= maps.length) {
-        continue;
+    while (queue.length) {
+      const [curY, curX, curCount] = queue.shift();
+
+      if (curY === HEIGHT - 1 && curX === WIDTH - 1) {
+        result = curCount;
+        return;
       }
-      if (maps[ny][nx] === 2) continue;
-      if (maps[ny][nx] === 0) continue;
 
-      maps[ny][nx] = 2;
-      queue.push([ny, nx, cnt + 1]);
+      moves.forEach((move) => {
+        const [dy, dx] = move;
+        const [ny, nx] = [curY + dy, curX + dx];
+
+        if (getIsValid(ny, nx)) {
+          queue.push([ny, nx, curCount + 1]);
+          maps[ny][nx] = 0;
+        }
+      });
     }
-  }
+  };
+
+  bfs(0, 0);
+
   return result;
 }
