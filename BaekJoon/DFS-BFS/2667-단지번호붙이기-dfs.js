@@ -21,22 +21,22 @@ rl.on("line", function (line) {
   const result = [];
   let count = 0;
 
-  const rangeCheck = (i, j) => {
-    if (i < 0 || j < 0 || i >= n || j >= n) {
+  const getIsValid = (y, x) => {
+    if (x < 0 || y < 0 || x >= n || y >= n || !map[y][x]) {
       return false;
     }
     return true;
   };
 
-  const dfs = (i, j) => {
-    map[i][j] = 0;
+  const dfs = (y, x) => {
+    map[y][x] = 0;
     count++;
 
-    moves.forEach(([dx, dy]) => {
-      const [nx, ny] = [i + dx, j + dy];
+    moves.forEach(([dy, dx]) => {
+      const [ny, nx] = [y + dy, x + dx];
 
-      if (rangeCheck(nx, ny) && map[nx][ny]) {
-        dfs(nx, ny);
+      if (getIsValid(ny, nx)) {
+        dfs(ny, nx);
       }
     });
   };
@@ -53,6 +53,5 @@ rl.on("line", function (line) {
   }
   result.sort((a, b) => a - b);
 
-  console.log(result.length);
-  console.log(result.join("\n"));
+  console.log(`${result.length}\n${result.join("\n")}`);
 });
