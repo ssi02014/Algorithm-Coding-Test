@@ -22,21 +22,19 @@ function solution(word) {
 function solution(word) {
   const vowels = ["A", "E", "I", "O", "U"];
   const result = [];
-  const str = "";
 
-  const dfs = (word, length) => {
-    if (word.length === length) {
-      result.push(word);
+  const dfs = (str, length) => {
+    if (str.length === length) {
+      result.push(str);
       return;
     }
-
     vowels.forEach((vowel) => {
-      dfs(word + vowel, length);
+      dfs(str + vowel, length);
     });
   };
 
   for (let i = 1; i <= 5; i++) {
-    dfs(str, i);
+    dfs("", i);
   }
 
   return result.sort().indexOf(word) + 1;
