@@ -1,44 +1,54 @@
+// 정규표현식 사용하지 않은 풀이
 function solution(files) {
-  files = files.map((file) => {
-    const obj = {};
-    let numberLastIdx = 0;
-    let str = "";
+  const mappingFiles = files.map((file) => {
+    const tempObj = {};
+    let [head, number] = ["", ""];
 
-    obj.value = file;
+    for (const word of file) {
+      const isNumber = !isNaN(+word);
 
-    for (let el of file) {
-      const isNumber = isNaN(Number(el));
-
-      if (isNumber || el === " ") str += el.toLowerCase();
-      else break;
+      if (isNumber && word !== " ") break;
+      head += word.toLowerCase();
     }
 
-    obj.header = str;
-    str = "";
+    tempObj.head = head;
 
-    for (let el of file) {
-      let isNumber = isNaN(Number(el));
+    for (const word of file) {
+      const isNumber = !isNaN(+word);
+      const isTail = !isNumber && number.length;
 
-      if (!isNumber && el !== " ") str += el;
-      else {
-        if (str.length) {
-          numberLastIdx = file.indexOf(el) - 1;
-          break;
-        }
-      }
+      if (isTail) break;
+      if (isNumber && word !== " ") number += word;
     }
-    obj.number = +str;
-    obj.tail = file.slice(numberLastIdx);
 
-    return obj;
+    tempObj.origin = file;
+    tempObj.head = head;
+    tempObj.number = +number;
+
+    return tempObj;
   });
 
-  return files
-    .sort((a, b) => {
-      if (a.header < b.header) return -1;
-      else if (a.header === b.header) {
-        if (a.number < b.number) return -1;
-      }
-    })
-    .map((el) => el.value);
+  return mappingFiles
+    .sort((a, b) => a.head.localeCompare(b.head) || a.number - b.number)
+    .map((file) => file.origin);
+}
+
+// 정규표현식
+function solution(files) {
+  const regex = /([^0-9]+)([0-9]+)(.*)/;
+
+  const mappingFiles = files.map((file) => {
+    const matchedFile = file.match(regex);
+    const [head, number] = [matchedFile[1].toLowerCase(), +matchedFile[2]];
+
+    return {
+      origin: file,
+      head,
+      number,
+    };
+  });
+
+  return mappingFiles
+    .sort((a, b) => a.head.localeCompare(b.head) || a.number - b.number)
+    .map((file) => file.origin);
 }
