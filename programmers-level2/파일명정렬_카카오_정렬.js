@@ -1,4 +1,4 @@
-// 정규표현식 사용하지 않은 풀이
+// 1. 정규표현식 사용하지 않은 풀이
 function solution(files) {
   const mappingFiles = files.map((file) => {
     const tempObj = {};
@@ -33,7 +33,7 @@ function solution(files) {
     .map((file) => file.origin);
 }
 
-// 정규표현식
+// 2. 정규표현식을 사용한 풀이
 function solution(files) {
   const regex = /([^0-9]+)([0-9]+)(.*)/;
 
@@ -51,4 +51,18 @@ function solution(files) {
   return mappingFiles
     .sort((a, b) => a.head.localeCompare(b.head) || a.number - b.number)
     .map((file) => file.origin);
+}
+
+// 3. sort 내부 풀이
+function solution(files) {
+  const REGEX = /(^[^0-9]+)(\d+)(.*)/;
+
+  return files.sort((a, b) => {
+    const [aTotal, aHead, aNum] = a.match(REGEX);
+    const [bTotal, bHead, bNum] = b.match(REGEX);
+    const aLowerHead = aHead.toLowerCase();
+    const bLowerHead = bHead.toLowerCase();
+
+    return aLowerHead.localeCompare(bLowerHead) || +aNum - +bNum;
+  });
 }
