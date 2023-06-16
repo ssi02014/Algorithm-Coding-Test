@@ -1,25 +1,24 @@
 function solution(topping) {
   const olderObj = {};
-  const youngerObj = topping.reduce((acc, cur) => {
-    acc[cur] = (acc[cur] || 0) + 1;
-    return acc;
-  }, {});
-
+  const youngerObj = {};
   let olderCount = 0;
   let youngerCount = new Set(topping).size;
-  let result = 0;
 
   topping.forEach((el) => {
-    if (!olderObj[el]) {
-      olderCount++;
-      olderObj[el] = 1;
-    }
-
-    youngerObj[el]--;
-
-    if (!youngerObj[el]) youngerCount--;
-    if (olderCount === youngerCount) result++;
+    youngerObj[el] = (youngerObj[el] || 0) + 1;
   });
 
-  return result;
+  return topping.reduce((acc, cur) => {
+    if (!olderObj[cur]) {
+      olderObj[cur] = 1;
+      olderCount++;
+    }
+
+    youngerObj[cur]--;
+
+    if (!youngerObj[cur]) youngerCount--;
+    if (olderCount === youngerCount) acc++;
+
+    return acc;
+  }, 0);
 }
