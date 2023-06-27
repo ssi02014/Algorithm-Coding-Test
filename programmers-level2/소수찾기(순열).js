@@ -42,19 +42,26 @@ function solution(numbers) {
 }
 
 // answer2
+
+const isPrimeNumber = (x) => {
+  if (x === 0 || x === 1) return false;
+
+  for (let i = 2; i <= Math.sqrt(x); i++) {
+    if (x % i === 0) return false;
+  }
+  return true;
+};
+
 function solution(numbers) {
   const visited = Array.from({ length: numbers.length }, () => false);
   const numSet = new Set();
-  let result = 0;
 
   const dfs = (target) => {
     const isHasNum = numSet.has(+target);
 
     if (!isHasNum) {
-      numSet.add(+target);
-
       if (isPrimeNumber(+target)) {
-        result++;
+        numSet.add(+target);
       }
     }
 
@@ -69,5 +76,5 @@ function solution(numbers) {
 
   dfs("");
 
-  return result;
+  return numSet.size;
 }
