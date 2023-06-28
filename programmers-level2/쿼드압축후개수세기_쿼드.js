@@ -1,38 +1,43 @@
-function quad(array, size, countArray, start) {
-  const first = array[start[0]][start[1]];
-  const half = size / 2;
-  let flag = true;
+function solution(arr) {
+  const counts = [0, 0];
+  const initSize = arr.length;
 
-  if (size === 1) {
-    first ? countArray[1]++ : countArray[0]++;
-    return;
-  }
+  const isAllSameValues = (firstValue, size, start) => {
+    const [startY, startX] = start;
 
-  for (let i = start[0]; i < start[0] + size; i++) {
-    for (let j = start[1]; j < start[1] + size; j++) {
-      if (first !== array[i][j]) {
-        flag = false;
-        break;
+    for (let i = startY; i < startY + size; i++) {
+      for (let j = startX; j < startX + size; j++) {
+        if (arr[i][j] !== firstValue) {
+          return false;
+        }
       }
     }
-    if (!flag) break;
-  }
+    return true;
+  };
 
-  if (flag) {
-    first ? countArray[1]++ : countArray[0]++;
+  const quad = (size, start) => {
+    const [startY, startX] = start;
+    const firstValue = arr[startY][startX];
+    const half = size / 2;
+
+    if (size === 1) {
+      firstValue ? counts[1]++ : counts[0]++;
+      return;
+    }
+
+    if (isAllSameValues(firstValue, size, start)) {
+      firstValue ? counts[1]++ : counts[0]++;
+      return;
+    }
+
+    quad(half, [startY, startX]);
+    quad(half, [startY + half, startX]);
+    quad(half, [startY, startX + half]);
+    quad(half, [startY + half, startX + half]);
     return;
-  }
-  quad(array, half, countArray, start);
-  quad(array, half, countArray, [start[0], start[1] + half]);
-  quad(array, half, countArray, [start[0] + half, start[1]]);
-  quad(array, half, countArray, [start[0] + half, start[1] + half]);
-  return;
-}
+  };
 
-function solution(arr) {
-  const countArray = [0, 0];
-  const size = arr.length;
-  quad(arr, size, countArray, [0, 0]);
+  quad(initSize, [0, 0]);
 
-  return countArray;
+  return counts;
 }
