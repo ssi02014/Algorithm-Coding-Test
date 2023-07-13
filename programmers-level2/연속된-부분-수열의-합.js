@@ -1,21 +1,20 @@
 function solution(sequence, k) {
-  const tempArr = [];
-  let tempSum = 0;
-  let start = 0;
-  let end = 0;
+  const tempList = [];
+  let [start, end] = [0, 0];
+  let sum = 0;
 
   while (end <= sequence.length) {
-    if (tempSum < k) {
-      tempSum += sequence[end++];
-    } else if (tempSum > k) {
-      tempSum -= sequence[start++];
+    if (sum < k) {
+      sum += sequence[end++];
+    } else if (sum > k) {
+      sum -= sequence[start++];
     } else {
-      tempArr.push([start, end - 1, end - 1 - start]);
-      tempSum += sequence[end++];
+      tempList.push([start, end - 1]);
+      sum += sequence[end++];
     }
   }
 
-  tempArr.sort((a, b) => a[2] - b[2] || a[0] - b[0]);
+  tempList.sort((a, b) => a[1] - a[0] - (b[1] - b[0]));
 
-  return tempArr[0].slice(0, 2);
+  return tempList[0];
 }
