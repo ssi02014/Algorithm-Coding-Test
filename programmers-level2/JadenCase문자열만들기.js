@@ -1,13 +1,15 @@
 function solution(s) {
-    const strList = s.toLowerCase().split(" ");
-    
-    let result = '';
-    
-    result = strList.map(str => {
-        return str === "" ? "" : str.replace(str[0], str[0].toUpperCase());
-    }).join(" ");
-    
-    return result
+  const strList = s.toLowerCase().split(" ");
+
+  let result = "";
+
+  result = strList
+    .map((str) => {
+      return str === "" ? "" : str.replace(str[0], str[0].toUpperCase());
+    })
+    .join(" ");
+
+  return result;
 }
 
 /*
@@ -23,3 +25,12 @@ function solution(s) {
         return list.join(" ");
     }
 */
+function solution(s) {
+  return s
+    .toLowerCase()
+    .split(" ")
+    .map((str) => {
+      return str === "" ? "" : str[0].toUpperCase() + str.slice(1);
+    })
+    .join(" ");
+}
