@@ -1,3 +1,4 @@
+// 풀이 1
 function solution(s) {
   const result = [0, 0];
 
@@ -9,6 +10,22 @@ function solution(s) {
 
     s = convertedStr.length.toString(2);
     result[0]++; // 변환 횟수 카운팅
+  }
+
+  return result;
+}
+
+// 풀이 2
+function solution(s) {
+  const result = [0, 0];
+
+  while (s !== "1") {
+    const step1 = s.replace(/0/g, "");
+    const step2 = step1.length.toString(2);
+
+    result[0]++;
+    result[1] += s.length - step1.length;
+    s = step2;
   }
 
   return result;
