@@ -1,17 +1,19 @@
 function solution(n) {
-  let [i, j] = [1, 1];
-  let tempValue = 0;
+  const numList = Array.from({ length: n }, (_, idx) => idx + 1);
+  let [left, right] = [0, 1];
+  let sum = numList[left];
   let result = 0;
 
-  while (i <= n + 1) {
-    if (tempValue < n) {
-      tempValue += i++;
-      continue;
-    }
-    if (tempValue === n) {
+  while (left < right) {
+    if (sum === n) {
+      sum += numList[right++] - numList[left++];
       result++;
+    } else if (sum < n) {
+      sum += numList[right++];
+    } else {
+      sum -= numList[left++];
     }
-    tempValue -= j++;
   }
+
   return result;
 }
