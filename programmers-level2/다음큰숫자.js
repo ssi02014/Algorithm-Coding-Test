@@ -18,3 +18,23 @@ function solution(n) {
     if (nextCount === targetCount) return n;
   }
 }
+
+// solution2 정규표현식 with. match
+function solution(n) {
+  const binaryN = n.toString(2);
+
+  const getBinaryCount = (value) => {
+    return value.match(/1/g).length;
+  };
+
+  const binaryNOneCount = getBinaryCount(binaryN);
+
+  while (true) {
+    const nextBinaryN = (++n).toString(2);
+    const nextBinaryNCount = getBinaryCount(nextBinaryN);
+
+    if (binaryNOneCount === nextBinaryNCount) {
+      return n;
+    }
+  }
+}
