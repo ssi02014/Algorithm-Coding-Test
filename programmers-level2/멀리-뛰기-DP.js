@@ -1,11 +1,11 @@
 function solution(n) {
-  const result = [1, 2];
+  const dp = [1, 2, 3, 5];
 
-  for (let i = 2; i < n; i++) {
-    result[i] = (result[i - 1] + result[i - 2]) % 1234567;
+  for (let i = 4; i < n; i++) {
+    dp[i] = (dp[i - 2] + dp[i - 1]) % 1234567;
   }
 
-  return result[n - 1];
+  return dp[n - 1];
 }
 /**
  * n = 1 -> 1
