@@ -1,17 +1,20 @@
 function solution(k, tangerine) {
-  const tangerineCountArr = tangerine.reduce((acc, cur) => {
-    acc[cur] = (acc[cur] || 0) + 1;
-    return acc;
-  }, []);
-  let sum = 0;
+  const countObj = {};
   let result = 0;
+  let temp = 0;
 
-  tangerineCountArr.sort((a, b) => b - a);
+  tangerine.forEach((el) => {
+    countObj[el] = (countObj[el] || 0) + 1;
+  });
 
-  for (const count of tangerineCountArr) {
-    sum += count;
+  const sortedValues = Object.values(countObj).sort((a, b) => b - a);
+
+  for (const value of sortedValues) {
+    temp += value;
     result++;
 
-    if (sum >= k) return result;
+    if (temp >= k) break;
   }
+
+  return result;
 }
