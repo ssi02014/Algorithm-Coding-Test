@@ -1,31 +1,41 @@
 function solution(s) {
+  const bucketObj = {
+    ")": "(",
+    "}": "{",
+    "]": "[",
+  };
+  const buckets = s.split("");
+  const bucketsLength = buckets.length;
   let result = 0;
 
-  s = s.split("");
-
-  for (let i = 0; i < s.length; i++) {
+  const isValidBuckets = (arr) => {
+    const keys = Object.keys(bucketObj);
     const stack = [];
-    let valid = true;
 
-    for (let j = 0; j < s.length; j++) {
-      const stackLast = stack[stack.length - 1];
+    if (keys.includes(arr[0])) return false;
 
-      if (s[j] === "{" || s[j] === "(" || s[j] === "[") {
-        stack.push(s[j]);
-      } else {
-        if (s[j] === "}") {
-          stackLast === "{" ? stack.pop() : (valid = false);
-        } else if (s[j] === ")") {
-          stackLast === "(" ? stack.pop() : (valid = false);
-        } else {
-          stackLast === "[" ? stack.pop() : (valid = false);
-        }
+    for (const bucket of arr) {
+      const stackLastItem = stack.at(-1);
+      const openedBucket = bucketObj[bucket];
+
+      if (!stack.length || stackLastItem !== openedBucket) {
+        stack.push(bucket);
+        continue;
+      }
+      if (stackLastItem === openedBucket) {
+        stack.pop();
       }
     }
 
-    if (valid && !stack.length) result++;
+    return stack.length ? false : true;
+  };
 
-    s.push(s.shift());
+  for (let i = 0; i < bucketsLength; i++) {
+    buckets.push(buckets.shift());
+
+    if (isValidBuckets(buckets)) {
+      result++;
+    }
   }
 
   return result;
