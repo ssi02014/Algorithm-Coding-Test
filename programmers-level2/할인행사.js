@@ -18,3 +18,28 @@ function solution(want, number, discount) {
 
   return result;
 }
+
+// 효율성 더 좋음
+function solution(want, number, discount) {
+  let result = 0;
+
+  const checkMembership = (slicedList) => {
+    for (let i = 0; i < want.length; i++) {
+      const targetLength = slicedList.filter((el) => el === want[i]).length;
+
+      if (!targetLength || targetLength < number[i]) {
+        return false;
+      }
+    }
+    return true;
+  };
+
+  for (let i = 0; i < discount.length - 9; i++) {
+    const slicedList = discount.slice(i, 10 + i);
+    if (checkMembership(slicedList)) {
+      result++;
+    }
+  }
+
+  return result;
+}
