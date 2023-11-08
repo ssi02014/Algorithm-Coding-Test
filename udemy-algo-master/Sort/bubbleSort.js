@@ -18,10 +18,8 @@ function bubbleSort(arr) {
 
 // 최적화 버블 정렬
 function RefactoringBubbleSort(arr) {
-  let noSwap;
-
   for (let i = 0; i < arr.length; i++) {
-    noSwap = true;
+    let noSwap = true;
     for (let j = 0; j < arr.length - 1 - i; j++) {
       if (arr[j] > arr[j + 1]) {
         // swap
