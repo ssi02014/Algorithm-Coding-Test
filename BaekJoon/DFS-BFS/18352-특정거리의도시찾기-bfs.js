@@ -1,3 +1,9 @@
+/**
+ * @description
+ * 문제 주소: https://www.acmicpc.net/problem/18352
+ * 알고리즘: BFS
+ */
+
 const readline = require("readline");
 const rl = readline.createInterface({
   input: process.stdin,
@@ -15,6 +21,7 @@ rl.on("line", function (line) {
   const visited = Array(n + 1).fill(false);
   const result = [];
 
+  // 단방향 그래프
   nodeList.forEach(([node1, node2]) => {
     graph[node1].push(node2);
   });
