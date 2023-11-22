@@ -27,7 +27,7 @@ rl.on("line", function (line) {
   let inOrderResult = "";
   let postOrderResult = "";
 
-  // 전위 순회
+  // 전위 순회 (루트) (왼쪽 자식) (오른쪽 자식)
   const preOrder = (node) => {
     if (node !== ".") {
       preOrderResult += node;
@@ -36,7 +36,7 @@ rl.on("line", function (line) {
     }
   };
 
-  // 중위 순회
+  // 중위 순회 (왼쪽 자식) (루트) (오른쪽 자식)
   const inOrder = (node) => {
     if (node !== ".") {
       inOrder(tree[node][0]);
@@ -45,7 +45,7 @@ rl.on("line", function (line) {
     }
   };
 
-  // 후위 순회
+  // 후위 순회 (왼쪽 자식) (오른쪽 자식) (루트)
   const postOrder = (node) => {
     if (node !== ".") {
       postOrder(tree[node][0]);
