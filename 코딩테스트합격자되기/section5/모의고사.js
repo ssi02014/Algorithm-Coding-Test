@@ -1,5 +1,5 @@
 /**
- * 프로그래멋 레벨 1 모의고사
+ * 프로그래머스 레벨1 모의고사
  * https://school.programmers.co.kr/learn/courses/30/lessons/42840
  */
 function solution(answers) {
