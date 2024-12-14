@@ -1,6 +1,6 @@
 /**
  * 프로그래머스 레벨1 실패율
- * https://school.programmers.co.kr/learn/courses/30/lessons/42889
+ * @see https://school.programmers.co.kr/learn/courses/30/lessons/42889
  */
 function solution(N, stages) {
   const failRates = [];
