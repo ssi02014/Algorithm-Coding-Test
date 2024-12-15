@@ -1,32 +1,24 @@
-const readline = require("readline"); 
-const rl = readline.createInterface({ 
-  input: process.stdin, 
-  output: process.stdout, 
-}); 
+const readline = require("readline");
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout,
+});
 
 const input = [];
 
 rl.on("line", function (line) {
-  input.push(line); 
-}).on("close", function () { 
-    const [N, K] = input[0].split(" ").map(Number);
-    const queue = [];
-    const result = [];
+  input.push(line);
+}).on("close", function () {
+  const [N, K] = input[0].split(" ").map(Number);
+  const queue = Array.from({ length: N }, (_, i) => i + 1);
+  const result = [];
 
-    for(let i = 1; i < N + 1; i++) {
-        queue.push(i);
+  while (queue.length) {
+    for (let i = 0; i < K; i++) {
+      queue.push(queue.shift());
     }
+    result.push(queue.pop());
+  }
 
-    let count = 0;
-    while(queue.length !== 0) {
-        count++;
-        
-        if (count !== K) queue.push(queue.shift());
-        else {
-            result.push(queue.shift());
-            count = 0;
-        }
-    }
-
-    console.log(`<${result.join(", ")}>`);
+  console.log(`<${result.join(", ")}>`);
 });

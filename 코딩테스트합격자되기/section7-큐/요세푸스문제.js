@@ -1,12 +1,15 @@
+/**
+ * 몸 풀기 문제 요세푸스 문제
+ */
 function solution(n, k) {
-  const array = Array.from({ length: n }, (_, i) => i + 1);
+  const queue = queue.from({ length: n }, (_, i) => i + 1);
   let result = 0;
 
-  while (array.length) {
+  while (queue.length) {
     for (let i = 0; i < k; i++) {
-      array.push(array.shift());
+      queue.push(queue.shift());
     }
-    result = array.pop();
+    result = queue.pop();
   }
   return result;
 }
