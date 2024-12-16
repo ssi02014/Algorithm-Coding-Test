@@ -1,5 +1,5 @@
 /**
- * 프로그래머스 레벨1 방문길이
+ * 프로그래머스 레벨1 방문길이(재풀이)
  * @see https://school.programmers.co.kr/learn/courses/30/lessons/49994
  */
 function solution(dirs) {

@@ -1,5 +1,5 @@
 /**
- * 프로그래머스 레벨3 표 변환 - 재풀이 필요 (고난이도 문제)
+ * 프로그래머스 레벨3 표 변환 - 재풀이 필요 (고난이도 문제, 재풀이)
  * tip: 인덱스를 기반으로 upTable, downTable을 구성 후 풀이
  * @see https://school.programmers.co.kr/learn/courses/30/lessons/81303
  */

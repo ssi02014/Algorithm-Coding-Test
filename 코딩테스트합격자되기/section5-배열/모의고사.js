@@ -1,5 +1,5 @@
 /**
- * 프로그래머스 레벨1 모의고사
+ * 프로그래머스 레벨1 모의고사(재풀이)
  * @see https://school.programmers.co.kr/learn/courses/30/lessons/42840
  */
 function solution(answers) {
@@ -24,7 +24,6 @@ function solution(answers) {
   });
 
   const maxPoint = Math.max(...points);
-  ㄱ;
 
   points.forEach((point, i) => {
     if (point === maxPoint) {

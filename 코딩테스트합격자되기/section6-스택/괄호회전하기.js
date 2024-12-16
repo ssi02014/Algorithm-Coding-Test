@@ -1,5 +1,5 @@
 /**
- * 프로그래머스 레벨2 괄호 회전하기
+ * 프로그래머스 레벨2 괄호 회전하기(재풀이)
  * @see https://school.programmers.co.kr/learn/courses/30/lessons/76502
  */
 function solution(s) {
