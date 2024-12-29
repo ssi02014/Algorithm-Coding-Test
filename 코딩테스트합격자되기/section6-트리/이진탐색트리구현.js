@@ -56,7 +56,7 @@ class BST {
 }
 
 /**
- * 몸 풀기 문제2 이진 탐색 트리 구현
+ * 몸 풀기 문제2 이진 탐색 트리 구현(기본 문제)
  * Node와 BST(Binary Search Tree) 클래스 생성 후 작업
  */
 function solution(list, searchList) {
