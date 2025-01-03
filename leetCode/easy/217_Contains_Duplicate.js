@@ -1,4 +1,8 @@
 /**
+ * 217. Contains Duplicate
+ * topic: Array, Hash Table, Sorting
+ * @see https://leetcode.com/problems/contains-duplicate
+ *
  * @param {number[]} nums
  * @return {boolean}
  */

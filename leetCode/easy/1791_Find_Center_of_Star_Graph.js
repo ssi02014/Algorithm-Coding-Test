@@ -1,4 +1,8 @@
 /**
+ * 1791. Find Center of Star Graph
+ * topic: Graph
+ * @see https://leetcode.com/problems/find-center-of-star-graph
+ *
  * @param {number[][]} edges
  * @return {number}
  */
