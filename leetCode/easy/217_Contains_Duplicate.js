@@ -7,15 +7,16 @@
  * @return {boolean}
  */
 var containsDuplicate = function (nums) {
-  let obj = {};
+  const countObj = {};
 
-  nums.forEach((el) => {
-    if (obj[el]) obj[el]++;
-    else obj[el] = 1;
-  });
+  for (let i = 0; i < nums.length; i++) {
+    const num = nums[i];
+    countObj[num] = (countObj[num] || 0) + 1;
 
-  for (let el in obj) {
-    if (obj[el] > 1) return true;
+    if (countObj[num] > 1) {
+      return true;
+    }
   }
+
   return false;
 };
